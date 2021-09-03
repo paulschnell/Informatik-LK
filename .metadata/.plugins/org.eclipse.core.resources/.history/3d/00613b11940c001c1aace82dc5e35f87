@@ -1,0 +1,10 @@
+package de.schnell.stringOderZahlen;
+
+public class StringOderZahlen {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

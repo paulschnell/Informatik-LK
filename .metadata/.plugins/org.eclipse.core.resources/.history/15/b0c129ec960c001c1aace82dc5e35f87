@@ -1,0 +1,9 @@
+package de.schnell.nullstelleBerechnen;
+
+public class NullstelleBerechnen {
+
+	public static void main(String[] args) {
+		
+	}
+
+}

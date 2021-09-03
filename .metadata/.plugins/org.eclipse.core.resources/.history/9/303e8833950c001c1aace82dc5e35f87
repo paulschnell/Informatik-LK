@@ -1,0 +1,13 @@
+package de.schnell.stringOderZahlen;
+
+import javax.swing.JOptionPane;
+
+public class StringOderZahlen {
+
+	public static void main(String[] args) {
+		String zahl1 = JOptionPane.showInputDialog("Gebe eine Zahl ein:");
+		String zahl2 = JOptionPane.showInputDialog("Gebe eine weitere Zahl ein:");
+		String operator = JOptionPane.showInputDialog("Gebe einen Rechenoperator ein (+, -, *, /):");
+	}
+
+}

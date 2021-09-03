@@ -1,0 +1,21 @@
+package de.schnell.halloWelt;
+
+import java.util.*;
+
+public class Hallo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("Heinz Dieter.");
+		
+		System.out.println("wassup.");
+
+		System.out.println("Was ist dein Name?");
+		
+		Scanner Eingabe = new Scanner(System.in);
+		String Name = Eingabe.next();
+		System.out.println("Du bist also " + Name);
+		Eingabe.close();
+	}
+
+}
