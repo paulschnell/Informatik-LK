@@ -2,7 +2,7 @@ package de.schnell.stringOderZahlen;
 
 import javax.swing.JOptionPane;
 
-public class StringOderZahlen {
+public class StringsOderZahlen {
 
 	public static void main(String[] args) {
 		String eingabe1 = JOptionPane.showInputDialog("Gebe eine Zahl ein:");
