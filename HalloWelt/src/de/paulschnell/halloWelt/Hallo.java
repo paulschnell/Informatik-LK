@@ -1,4 +1,4 @@
-package de.schnell.halloWelt;
+package de.paulschnell.halloWelt;
 
 import java.util.Scanner;
 import javax.swing.JOptionPane;
