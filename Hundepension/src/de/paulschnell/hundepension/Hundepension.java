@@ -11,21 +11,21 @@ public class Hundepension {
 		String eingabe = JOptionPane.showInputDialog("Gebe 1 ein, um " + name + " zu füttern (+200g).\n"
 				+ "Gebe 2 ein, um mit " + name + " Gassi zu gehen (-100g).");
 		
-		while (gewicht > 4000 && gewicht < 30000) {	
+		while (gewicht > 4000 && gewicht < 30000 && !eingabe.equals("0")) {
 			if (eingabe.equals("1")) {
 				gewicht += 200.0;
 				eingabe = JOptionPane.showInputDialog(null, "Du hast " + name + " gefüttert. Aktuelles Gewicht: " + gewicht + "g.\n"
 						+ "Gebe 1 ein, um " + name + " zu füttern (+200g).\n"
 						+ "Gebe 2 ein, um mit " + name + " Gassi zu gehen (-100g).\n"
 						+ "Gebe 0 zum Schließen des Programms ein.");
+				
 			} else if (eingabe.equals("2")) {
 				gewicht -= 100.0;
 				eingabe = JOptionPane.showInputDialog(null, "Du bist mit " + name + " Gassi gelaufen. Aktuelles Gewicht: " + gewicht + "g.\n"
 						+ "Gebe 1 ein, um " + name + " zu füttern (+200g).\n"
 						+ "Gebe 2 ein, um mit " + name + " Gassi zu gehen (-100g).\n"
-						+ "Gebe 0 zum Schließen des Programms ein.");
-			} else if (eingabe.equals("0")) {
-				break;
+						+ "Gebe 0 zum Schließen des Programms ein.");				
+			
 			} else {
 				eingabe = JOptionPane.showInputDialog("Bitter versuche es erneut.\n"
 						+ "Gebe 1 ein, um " + name + " zu füttern (+200g).\n"
@@ -34,12 +34,12 @@ public class Hundepension {
 			}
 		}
 		
-		if (gewicht <= 4000) {
-			JOptionPane.showMessageDialog(null, name + " ist verhungert. Du hättest ihn mehr füttern sollen.");
-		} else if (gewicht >= 30000) {
-			JOptionPane.showMessageDialog(null, name + " ist an Fettleibigkeit gestorben. Du hättest mehr mit ihm Gassi gehen sollen.");
+		if (eingabe.equals("0")) {
+			JOptionPane.showMessageDialog(null, "Du hast die Hundepension abgebrochen.\n"
+					+ "Letztes Gewicht von " + name + ": " + gewicht + "g");
 		} else {
-			JOptionPane.showMessageDialog(null, "Du hast das Programm gestoppt. Gewicht von " + name + ": " + gewicht + "g");
+			JOptionPane.showMessageDialog(null, name + " ist gestorben. Du hast dich nicht genug um ihn gekümmert.\n"
+					+ "Letztes Gewicht: " + gewicht + "g");
 		}
 	}
 	

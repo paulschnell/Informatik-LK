@@ -11,7 +11,7 @@ public class NullstelleBerechnen {
 		Double p = Double.parseDouble(eingabeP);
 		Double q = Double.parseDouble(eingabeQ);
 		
-		Double d = Math.sqrt(p / 2) - q;
+		Double d = Math.pow(p / 2, 2) - q;
 		
 		if (d > 0) {
 			JOptionPane.showMessageDialog(null, "Die Funktion 0 = x^2 + " + p + "x + " + q + " hat 2 Nullstellen.");
