@@ -39,7 +39,7 @@ public class Hundepension {
 					+ "Letztes Gewicht von " + name + ": " + gewicht + "g");
 		} else {
 			JOptionPane.showMessageDialog(null, name + " ist gestorben. Du hast dich nicht genug um ihn gekümmert.\n"
-					+ "Letztes Gewicht: " + gewicht + "g");
+					+ "Letztes Gewicht: " + gewicht + "k");
 		}
 	}
 	
