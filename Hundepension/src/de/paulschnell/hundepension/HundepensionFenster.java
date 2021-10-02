@@ -126,6 +126,11 @@ public class HundepensionFenster extends JFrame {
 		lblStatus.setBounds(71, 320, 655, 32);
 		contentPane.add(lblStatus);
 
+		JLabel lblStatusGewicht = new JLabel("");
+		lblStatusGewicht.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblStatusGewicht.setBounds(71, 363, 655, 32);
+		contentPane.add(lblStatusGewicht);
+
 		btnStart = new JButton("Start");
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnStart.addActionListener(new ActionListener() {
@@ -136,7 +141,8 @@ public class HundepensionFenster extends JFrame {
 					rasse = tfEingabeRasse.getText();
 					gewicht = Double.parseDouble(tfEingabeGewicht.getText());
 					
-					lblStatus.setText("Dein Hund " + name + ", ein " + rasse + ", wiegt " + String.format("%.2f", gewicht) + " kg.");
+					lblStatus.setText("Dein Hund " + name + ", ein " + rasse + ", ist nun in der Hundepension.");
+					lblStatusGewicht.setText("Aktuelles Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 					
 					tfEingabeName.setEnabled(false);
 					tfEingabeRasse.setEnabled(false);
@@ -145,7 +151,8 @@ public class HundepensionFenster extends JFrame {
 					btnGassiGehen.setEnabled(true);
 					btnStart.setText("Stop");
 				} else {
-					lblStatus.setText("Du hast das Programm gestoppt. " + name + ", ein " + rasse + ", wiegt " + String.format("%.2f", gewicht) + " kg.");
+					lblStatus.setText("Du hast deinen Hund " + name + ", ein " + rasse + ", aus der Hundepension genommen.");
+					lblStatusGewicht.setText("Letztes Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 					
 					tfEingabeName.setEnabled(true);
 					tfEingabeRasse.setEnabled(true);
@@ -171,12 +178,14 @@ public class HundepensionFenster extends JFrame {
 					btnGassiGehen.setEnabled(true);
 				}
 				
-				if (gewicht < 30) {
+				if (gewicht < 29.9 && gewicht < 29.8) {
 					gewicht += 0.2;
 					
-					lblStatus.setText("Du hast " + name + ", ein " + rasse + ", gefüttert. Er wiegt nun " + String.format("%.2f", gewicht) + " kg.");
+					lblStatus.setText("Du hast " + name + ", ein " + rasse + ", gefüttert. (+ 0.2 kg)");
+					lblStatusGewicht.setText("Aktuelles Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 				} else {
-					lblStatus.setText(name + " ist zu schwer. Er wiegt " + String.format("%.2f", gewicht) + " kg. Vielleicht solltest du mit ihm Gassi gehen.");
+					lblStatus.setText(name + " ist zu schwer. Vielleicht solltest du mit ihm Gassi gehen.");
+					lblStatusGewicht.setText("Aktuelles Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 					btnFuettern.setEnabled(false);
 				}
 				
@@ -195,12 +204,14 @@ public class HundepensionFenster extends JFrame {
 					btnFuettern.setEnabled(true);
 				}
 				
-				if (gewicht > 4) {
+				if (gewicht >= 4.1) {
 					gewicht -= 0.1;
 					
-					lblStatus.setText("Du bist mit " + name + ", ein " + rasse + ", Gassi gegangen. Er wiegt nun " + String.format("%.2f", gewicht) + " kg.");
+					lblStatus.setText("Du bist mit " + name + ", ein " + rasse + ", Gassi gegangen. (- 0.1 kg)");
+					lblStatusGewicht.setText("Aktuelles Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 				} else {
-					lblStatus.setText(name + " ist zu schwach. Er wiegt " + String.format("%.2f", gewicht) + " kg. Vielleicht solltest du ihn Füttern.");
+					lblStatus.setText(name + " ist zu schwach. Vielleicht solltest du ihn mal Füttern.");
+					lblStatusGewicht.setText("Aktuelles Gewicht: " + String.format("%.2f", gewicht) + " kg.");
 					btnGassiGehen.setEnabled(false);
 				}
 				
@@ -226,6 +237,7 @@ public class HundepensionFenster extends JFrame {
 					lblGewichtFragen.setForeground(Color.WHITE);
 					lblKg.setForeground(Color.WHITE);
 					lblStatus.setForeground(Color.WHITE);
+					lblStatusGewicht.setForeground(Color.WHITE);
 				} else {
 					btnDarkLightMode.setText("Dark Mode");
 
@@ -237,6 +249,7 @@ public class HundepensionFenster extends JFrame {
 					lblGewichtFragen.setForeground(Color.BLACK);
 					lblKg.setForeground(Color.BLACK);
 					lblStatus.setForeground(Color.BLACK);
+					lblStatusGewicht.setForeground(Color.BLACK);
 				}
 				
 			}
