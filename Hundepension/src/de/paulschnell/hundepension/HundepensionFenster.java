@@ -19,9 +19,7 @@ import javax.swing.border.EmptyBorder;
 public class HundepensionFenster extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField tfEingabeName;
-	private JTextField tfEingabeRasse;
-	private JTextField tfEingabeGewicht;
+	
 	private JLabel lblStatus;
 	private JButton btnStart;
 	private JButton btnFuettern;
@@ -92,23 +90,24 @@ public class HundepensionFenster extends JFrame {
 		lblGewichtFragen.setBounds(71, 221, 196, 32);
 		contentPane.add(lblGewichtFragen);
 
-		tfEingabeName = new JTextField();
+		JTextField tfEingabeName = new JTextField();
 		tfEingabeName.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfEingabeName.setBounds(277, 148, 142, 25);
 		contentPane.add(tfEingabeName);
 		tfEingabeName.setColumns(10);
 
-		tfEingabeRasse = new JTextField();
+		JTextField tfEingabeRasse = new JTextField();
 		tfEingabeRasse.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfEingabeRasse.setColumns(10);
 		tfEingabeRasse.setBounds(277, 189, 142, 25);
 		contentPane.add(tfEingabeRasse);
 
-		tfEingabeGewicht = new JTextField();
+		JTextField tfEingabeGewicht = new JTextField();
 		tfEingabeGewicht.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		tfEingabeGewicht.setColumns(10);
 		tfEingabeGewicht.setBounds(277, 228, 142, 25);
 		contentPane.add(tfEingabeGewicht);
+		tfEingabeGewicht.setText("8.00");
 
 		JLabel lblKg = new JLabel("kg");
 		lblKg.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -131,6 +130,8 @@ public class HundepensionFenster extends JFrame {
 		lblStatusGewicht.setBounds(71, 363, 655, 32);
 		contentPane.add(lblStatusGewicht);
 
+		
+		// Start
 		btnStart = new JButton("Start");
 		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnStart.addActionListener(new ActionListener() {
@@ -170,6 +171,8 @@ public class HundepensionFenster extends JFrame {
 		btnStart.setBounds(71, 440, 150, 50);
 		contentPane.add(btnStart);
 
+		
+		// Fuettern
 		btnFuettern = new JButton("F\u00FCttern");
 		btnFuettern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -196,6 +199,8 @@ public class HundepensionFenster extends JFrame {
 		btnFuettern.setEnabled(false);
 		contentPane.add(btnFuettern);
 
+		
+		// Gassi gehen
 		btnGassiGehen = new JButton("Gassi gehen");
 		btnGassiGehen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -222,6 +227,8 @@ public class HundepensionFenster extends JFrame {
 		btnGassiGehen.setEnabled(false);
 		contentPane.add(btnGassiGehen);
 		
+		
+		// Dark Mode
 		JButton btnDarkLightMode = new JButton("Dark Mode");
 		btnDarkLightMode.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
