@@ -34,7 +34,6 @@ public class Sekundenrechner extends JFrame {
 	private double stunden = 0;
 	private double minuten = 0;
 	private double sekunden = 0;
-	private double ergebnis = 0;
 
 	/**
 	 * Launch the application.
@@ -88,8 +87,6 @@ public class Sekundenrechner extends JFrame {
 			public void keyReleased(KeyEvent e) {
 				
 				tage = tfEingabeTage.getText().equals("") ? 0 : Double.parseDouble(tfEingabeTage.getText());	
-				
-		
 				
 			}
 		});
@@ -181,19 +178,7 @@ public class Sekundenrechner extends JFrame {
 		btnUmrechnenTage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				double tage = tfEingabeTage.getText().equals("") ? 0 : Double.parseDouble(tfEingabeTage.getText());
-				double stunden = tfEingabeStunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeStunden.getText());
-				double minuten = tfEingabeMinuten.getText().equals("") ? 0 : Double.parseDouble(tfEingabeMinuten.getText());
-				double sekunden = tfEingabeSekunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeSekunden.getText());
-				
-				double ergebnis = tage + (stunden / 24) + (minuten / 60 / 24) + (sekunden / 60 / 60 / 24);
-				
-				lblAusgabe.setText(Double.toString(ergebnis));
-				
-				btnUmrechnenSekunden.setEnabled(true);
-				btnUmrechnenTage.setEnabled(false);
-				btnUmrechnenMinuten.setEnabled(true);
-				btnUmrechnenStunden.setEnabled(true);
+				lblAusgabe.setText(Double.toString(tage + (stunden / 24) + (minuten / 60 / 24) + (sekunden / 60 / 60 / 24)));
 
 			}
 		});
@@ -205,19 +190,7 @@ public class Sekundenrechner extends JFrame {
 		btnUmrechnenStunden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				double tage = tfEingabeTage.getText().equals("") ? 0 : Double.parseDouble(tfEingabeTage.getText());
-				double stunden = tfEingabeStunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeStunden.getText());
-				double minuten = tfEingabeMinuten.getText().equals("") ? 0 : Double.parseDouble(tfEingabeMinuten.getText());
-				double sekunden = tfEingabeSekunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeSekunden.getText());
-				
-				double ergebnis = (tage * 24) + stunden + (minuten / 60) + (sekunden / 60 / 60);
-				
-				lblAusgabe.setText(Double.toString(ergebnis));
-				
-				btnUmrechnenSekunden.setEnabled(true);
-				btnUmrechnenTage.setEnabled(true);
-				btnUmrechnenMinuten.setEnabled(true);
-				btnUmrechnenStunden.setEnabled(false);
+				lblAusgabe.setText(Double.toString((tage * 24) + stunden + (minuten / 60) + (sekunden / 60 / 60)));
 
 			}
 		});
@@ -229,19 +202,7 @@ public class Sekundenrechner extends JFrame {
 		btnUmrechnenMinuten.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				double tage = tfEingabeTage.getText().equals("") ? 0 : Double.parseDouble(tfEingabeTage.getText());
-				double stunden = tfEingabeStunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeStunden.getText());
-				double minuten = tfEingabeMinuten.getText().equals("") ? 0 : Double.parseDouble(tfEingabeMinuten.getText());
-				double sekunden = tfEingabeSekunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeSekunden.getText());
-				
-				double ergebnis = (tage * 24 * 60) + (stunden * 60) + minuten + (sekunden / 60);
-				
-				lblAusgabe.setText(Double.toString(ergebnis));
-				
-				btnUmrechnenSekunden.setEnabled(true);
-				btnUmrechnenTage.setEnabled(true);
-				btnUmrechnenMinuten.setEnabled(false);
-				btnUmrechnenStunden.setEnabled(true);
+				lblAusgabe.setText(Double.toString((tage * 24 * 60) + (stunden * 60) + minuten + (sekunden / 60)));
 
 			}
 		});
@@ -253,19 +214,7 @@ public class Sekundenrechner extends JFrame {
 		btnUmrechnenSekunden.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				double tage = tfEingabeTage.getText().equals("") ? 0 : Double.parseDouble(tfEingabeTage.getText());
-				double stunden = tfEingabeStunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeStunden.getText());
-				double minuten = tfEingabeMinuten.getText().equals("") ? 0 : Double.parseDouble(tfEingabeMinuten.getText());
-				double sekunden = tfEingabeSekunden.getText().equals("") ? 0 : Double.parseDouble(tfEingabeSekunden.getText());
-				
-				double ergebnis = (tage * 24 * 60 * 60) + (stunden * 60 * 60) + (minuten * 60) + sekunden;
-				
-				lblAusgabe.setText(Double.toString(ergebnis));
-				
-				btnUmrechnenSekunden.setEnabled(false);
-				btnUmrechnenTage.setEnabled(true);
-				btnUmrechnenMinuten.setEnabled(true);
-				btnUmrechnenStunden.setEnabled(true);
+				lblAusgabe.setText(Double.toString((tage * 24 * 60 * 60) + (stunden * 60 * 60) + (minuten * 60) + sekunden));
 
 			}
 		});
