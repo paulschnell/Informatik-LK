@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Time;
+import java.util.Random;
+import java.util.Timer;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,10 +57,10 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
 				for (int i = 0; i < 10; i++) {
-					graphics.drawRect(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20, cvCanvas.getHeight() - i * 20);
+					graphics.drawRect(i * 10, i * 10, cvCanvas.getWidth() - i * 20, cvCanvas.getHeight() - i * 20);
 				}
 
 			}
@@ -70,10 +73,11 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
 				for (int i = 0; i < 10; i++) {
-					graphics.drawOval(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20, cvCanvas.getHeight() - i * 20);
+					graphics.drawOval(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20,
+							cvCanvas.getHeight() - i * 20);
 				}
 
 			}
@@ -86,10 +90,10 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
-				for (int i = 0; i < cvCanvas.getWidth() / 10; i++) {
-					graphics.drawLine(0 + i * 10, 0, cvCanvas.getWidth() - i * 10, cvCanvas.getHeight());
+				for (int i = 0; i < cvCanvas.getWidth(); i += 10) {
+					graphics.drawLine(0 + i, 0, cvCanvas.getWidth() - i, cvCanvas.getHeight());
 				}
 
 			}
@@ -102,11 +106,11 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
 				graphics.setColor(Color.CYAN);
-				for (int i = 0; i < cvCanvas.getHeight() / 10; i++) {
-					graphics.drawLine(0, 0 + i * 10, cvCanvas.getWidth(), cvCanvas.getHeight() - i * 10);
+				for (int i = 0; i < cvCanvas.getHeight(); i += 10) {
+					graphics.drawLine(0, 0 + i, cvCanvas.getWidth(), cvCanvas.getHeight() - i);
 				}
 
 			}
@@ -119,15 +123,29 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
-				for (int i = 0; i < cvCanvas.getWidth() / 10; i++) {
-					graphics.drawLine(0 + i * 10, 0, cvCanvas.getWidth() - i * 10, cvCanvas.getHeight());
+				for (int i = 0; i < cvCanvas.getWidth(); i += 10) {
+					graphics.drawLine(0 + i, 0, cvCanvas.getWidth() - i, cvCanvas.getHeight());
+					
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 				graphics.setColor(Color.CYAN);
-				for (int i = 0; i < cvCanvas.getHeight() / 10; i++) {
-					graphics.drawLine(0, 0 + i * 10, cvCanvas.getWidth(), cvCanvas.getHeight() - i * 10);
+				for (int i = 0; i < cvCanvas.getHeight() + 1; i += 10) {
+					graphics.drawLine(0, 0 + i, cvCanvas.getWidth(), cvCanvas.getHeight() - i);
+
+					try {
+						Thread.sleep(100);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 
 			}
@@ -140,13 +158,14 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
-				
-				Color[] farben = { Color.WHITE, Color.PINK, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.RED, Color.MAGENTA, Color.GREEN, Color.BLUE, Color.BLACK, Color.YELLOW, Color.RED };
-				
-				for (int i = 0; i < farben.length; i++) {
-					graphics.setColor(farben[i]);
-					graphics.fillRect(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20, cvCanvas.getHeight() - i * 20);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
+
+				Color[] farben = { Color.WHITE, Color.PINK, Color.BLUE, Color.GREEN, Color.MAGENTA, Color.RED, Color.BLACK, Color.YELLOW };
+
+				for (int i = 0; i < 12; i++) {
+					graphics.setColor(farben[new Random().nextInt(farben.length)]);
+					graphics.fillRect(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20,
+							cvCanvas.getHeight() - i * 20);
 				}
 
 			}
@@ -154,12 +173,36 @@ public class UebungenEtwasMalrei extends JFrame {
 		btnMalen6.setBounds(525, 10, 130, 40);
 		contentPane.add(btnMalen6);
 
+		JButton btnMalen6Neu = new JButton("Aufgabe 6 (neu)");
+		btnMalen6Neu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Graphics graphics = cvCanvas.getGraphics();
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
+
+				for (int i = 0; i < 10; i++) {
+					graphics.setColor(
+							new Color(new Random().nextInt(255), new Random().nextInt(255), new Random().nextInt(255)));
+					graphics.fillRect(0 + i * 10, 0 + i * 10, cvCanvas.getWidth() - i * 20,
+							cvCanvas.getHeight() - i * 20);
+					try {
+						Thread.sleep(1 * 1000);
+					} catch (InterruptedException e1) {
+						e1.printStackTrace();
+					}
+				}
+
+			}
+		});
+		btnMalen6Neu.setBounds(525, 160, 130, 40);
+		contentPane.add(btnMalen6Neu);
+
 		JButton btnMalen7 = new JButton("Aufgabe 7");
 		btnMalen7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
 				for (int i = 0; i < cvCanvas.getWidth() / 10; i++) {
 					graphics.drawLine(0 + i * 10, 0, 0 + i * 10, cvCanvas.getHeight());
@@ -179,7 +222,7 @@ public class UebungenEtwasMalrei extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				Graphics graphics = cvCanvas.getGraphics();
-				clearScreen(graphics, cvCanvas);
+				graphics.clearRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
 
 				Color[] farben = { Color.WHITE, Color.BLACK };
 
@@ -187,7 +230,14 @@ public class UebungenEtwasMalrei extends JFrame {
 					for (int j = 0; j < cvCanvas.getWidth() / 10; j++) {
 
 						graphics.setColor(farben[(j + i) % 2]);
-						graphics.fillRect(0 + j * 10, i * 10, 10 + j * 10, 10 + i * 10);
+						graphics.fillRect(0 + j * 10, i * 10, 10 + j, 10 + i);
+						
+//						try {
+//							Thread.sleep(50);
+//						} catch (InterruptedException e1) {
+//							// TODO Auto-generated catch block
+//							e1.printStackTrace();
+//						}
 
 					}
 				}
@@ -196,11 +246,5 @@ public class UebungenEtwasMalrei extends JFrame {
 		});
 		btnMalen8.setBounds(525, 110, 130, 40);
 		contentPane.add(btnMalen8);
-	}
-
-	private static void clearScreen(Graphics graphics, Canvas cvCanvas) {
-		graphics.setColor(Color.WHITE);
-		graphics.fillRect(0, 0, cvCanvas.getWidth(), cvCanvas.getHeight());
-		graphics.setColor(Color.BLACK);
 	}
 }
