@@ -46,10 +46,10 @@ public class Weihnachten extends JFrame {
 		addComponentListener(new ComponentAdapter() {
 			@Override
 			public void componentResized(ComponentEvent e) {
-				
+
 				canvas.setBounds(10, 10, getWidth() - (450 - 416), getHeight() - (300 - 202));
 				btnSchneeRaeumen.setBounds(getWidth() / 2 - btnSchneeRaeumen.getWidth() / 2, getHeight() - 80, 142, 35);
-				
+
 			}
 		});
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,26 +62,30 @@ public class Weihnachten extends JFrame {
 		canvas.addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				
+
+				Color[] farben = { Color.WHITE, Color.ORANGE, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA,
+						Color.RED, Color.YELLOW };
+
+				Graphics graphics = canvas.getGraphics();
+
 				int x = (int) (Math.random() * getWidth());
 				int y = (int) (Math.random() * getHeight());
-				
-				Color[] farben = { Color.WHITE, Color.ORANGE, Color.BLUE, Color.CYAN, Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW };
-				
-				Graphics graphics = canvas.getGraphics();
-				
-				graphics.setColor(farben[(int) Math.random() * farben.length]);
+
+				graphics.setColor(farben[(int) (Math.random() * farben.length)]);
 				graphics.drawString("*", x, y);
-				
+
 			}
 		});
-		
+
 		canvas.setBackground(Color.BLACK);
 		canvas.setBounds(10, 10, 416, 202);
 		contentPane.add(canvas);
-		
+
 		btnSchneeRaeumen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Graphics graphics = canvas.getGraphics();
+
+				graphics.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 			}
 		});
 		btnSchneeRaeumen.setBounds(174, 218, 142, 35);
