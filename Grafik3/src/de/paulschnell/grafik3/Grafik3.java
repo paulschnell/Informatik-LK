@@ -242,10 +242,10 @@ public class Grafik3 extends JFrame {
 						graphics.setColor(farben[i]);
 						for (int k = 0; k < 5 + i + j; k++) {
 							graphics.drawOval(
-									100 * i + (5 * 10 - i * 5) - j * 5,
-									100 * j + 5 * 10 - i * 5 - j * 5,
-									(i + 1) * 10 + j * 10,
-									(i + 1) * 10 + j * 10
+									100 * i + (5 * 10 - i * 5) - j * 5 + k * 4,
+									100 * j + 5 * 10 - i * 5 - j * 5 + k * 4,
+									(i + 1) * 10 + j * 10 - k * 8,
+									(i + 1) * 10 + j * 10 - k * 8
 							);
 						}
 					}

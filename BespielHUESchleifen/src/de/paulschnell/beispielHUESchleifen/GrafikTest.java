@@ -141,6 +141,7 @@ public class GrafikTest extends JFrame {
 					for (int ix = 0; ix < 8; ix++) {
 						graphics.setColor(Color.RED);
 						graphics.fillOval(ix * 100 + iy * 5, iy * 100 + iy * 5, 100 - iy * 10, 100 - iy * 10);
+						
 						graphics.setColor(Color.YELLOW);
 						graphics.fillOval(ix * 100 + iy * 5 + 10, iy * 100 + iy * 5 + 10, 100 - iy * 10 - 20,
 								100 - iy * 10 - 20);
