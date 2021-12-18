@@ -19,7 +19,6 @@ import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 import javax.swing.event.ChangeEvent;
-import java.awt.Choice;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -62,8 +61,7 @@ public class Malen extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		canvas.addMouseMotionListener(new MouseMotionAdapter() {
+		canvas.addMouseMotionListener(new MouseMotionAdapter() {			
 			@Override
 			public void mouseDragged(MouseEvent e) {
 
