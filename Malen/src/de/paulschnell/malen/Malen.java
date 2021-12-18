@@ -56,7 +56,7 @@ public class Malen extends JFrame {
 	public Malen() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 986, 633);
+		setBounds(100, 100, 750, 569);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -94,7 +94,7 @@ public class Malen extends JFrame {
 
 			}
 		});
-		btnLoeschen.setBounds(212, 548, 119, 38);
+		btnLoeschen.setBounds(528, 167, 119, 38);
 		contentPane.add(btnLoeschen);
 
 		JButton btnToggleRadieren = new JButton("Radieren");
@@ -102,22 +102,16 @@ public class Malen extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				if (!radieren) {
-
 					radieren = true;
-
 					btnToggleRadieren.setText("Zeichnen");
-
 				} else {
-
 					radieren = false;
-
 					btnToggleRadieren.setText("Radieren");
-
 				}
 
 			}
 		});
-		btnToggleRadieren.setBounds(341, 548, 119, 38);
+		btnToggleRadieren.setBounds(528, 222, 119, 38);
 		contentPane.add(btnToggleRadieren);
 
 		sliderDurchmesser = new JSlider();
@@ -128,18 +122,18 @@ public class Malen extends JFrame {
 
 			}
 		});
-		sliderDurchmesser.setBounds(10, 564, 200, 22);
+		sliderDurchmesser.setBounds(528, 134, 200, 22);
 		contentPane.add(sliderDurchmesser);
 
 		JLabel lblDurchmesser = new JLabel("Durchmesser:");
 		lblDurchmesser.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblDurchmesser.setBounds(10, 531, 86, 23);
+		lblDurchmesser.setBounds(528, 101, 86, 23);
 		contentPane.add(lblDurchmesser);
 
 		lblDurchmesserZahl = new JLabel("50");
 		lblDurchmesserZahl.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDurchmesserZahl.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblDurchmesserZahl.setBounds(92, 531, 37, 23);
+		lblDurchmesserZahl.setBounds(610, 101, 37, 23);
 		contentPane.add(lblDurchmesserZahl);
 		
 		cbFarbeAuswaehlen = new JComboBox();
@@ -147,5 +141,18 @@ public class Malen extends JFrame {
 		cbFarbeAuswaehlen.setSelectedIndex(0);
 		cbFarbeAuswaehlen.setBounds(528, 43, 119, 37);
 		contentPane.add(cbFarbeAuswaehlen);
+		
+		JButton btnFuellen = new JButton("Füllen");
+		btnFuellen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				Graphics graphics = canvas.getGraphics();
+				graphics.setColor(colors[cbFarbeAuswaehlen.getSelectedIndex()]);
+				graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
+				
+			}
+		});
+		btnFuellen.setBounds(528, 271, 119, 38);
+		contentPane.add(btnFuellen);
 	}
 }
