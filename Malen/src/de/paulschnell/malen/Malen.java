@@ -75,11 +75,13 @@ public class Malen extends JFrame {
 
 				if (!radieren) {
 					
-					if (cbFarbeAuswaehlen.getSelectedIndex() != 0) {
+					if (cbFarbeAuswaehlen.getSelectedIndex() != 0 && cbFarbeAuswaehlen.getSelectedIndex() != 10) {
 						graphics.setColor(colors[cbFarbeAuswaehlen.getSelectedIndex() - 1]);
-					} else {
+					} else if (cbFarbeAuswaehlen.getSelectedIndex() == 0) {
 						graphics.setColor(new Color(Integer.parseInt(lblRot.getText()),
 								Integer.parseInt(lblGruen.getText()), Integer.parseInt(lblBlau.getText())));
+					} else if (cbFarbeAuswaehlen.getSelectedIndex() == 10) {
+						graphics.setColor(colors[(int) (Math.random() * 8 + 1)]);
 					}
 					
 					graphics.fillOval(e.getX() - sliderDurchmesser.getValue() / 2,
@@ -158,7 +160,7 @@ public class Malen extends JFrame {
 
 		cbFarbeAuswaehlen = new JComboBox();
 		cbFarbeAuswaehlen.setModel(new DefaultComboBoxModel(new String[] { "Eigen", "Schwarz", "Weiß", "Blau", "Grün",
-				"Magenta", "Chayen", "Pink", "Orange", "Gelb" }));
+				"Magenta", "Chayen", "Pink", "Orange", "Gelb", "Regenbogen" }));
 		cbFarbeAuswaehlen.setSelectedIndex(0);
 		cbFarbeAuswaehlen.setBounds(528, 43, 119, 37);
 		contentPane.add(cbFarbeAuswaehlen);
@@ -169,11 +171,13 @@ public class Malen extends JFrame {
 
 				Graphics graphics = canvas.getGraphics();
 				
-				if (cbFarbeAuswaehlen.getSelectedIndex() != 0) {
+				if (cbFarbeAuswaehlen.getSelectedIndex() != 0 && cbFarbeAuswaehlen.getSelectedIndex() != 10) {
 					graphics.setColor(colors[cbFarbeAuswaehlen.getSelectedIndex() - 1]);
-				} else {
+				} else if (cbFarbeAuswaehlen.getSelectedIndex() == 0) {
 					graphics.setColor(new Color(Integer.parseInt(lblRot.getText()),
 							Integer.parseInt(lblGruen.getText()), Integer.parseInt(lblBlau.getText())));
+				} else if (cbFarbeAuswaehlen.getSelectedIndex() == 10) {
+					graphics.setColor(colors[(int) (Math.random() * 8 + 1)]);
 				}
 				
 				graphics.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
