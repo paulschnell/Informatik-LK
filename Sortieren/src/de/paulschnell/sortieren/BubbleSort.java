@@ -1,4 +1,4 @@
-package de.paulschnell.bubblesort;
+package de.paulschnell.sortieren;
 
 public class BubbleSort {
 
@@ -12,7 +12,7 @@ public class BubbleSort {
 		int[] sortiert;
 		
 		long time1 = System.nanoTime();
-		sortiert = b.optimiertSortieren(liste);
+		sortiert = b.sortieren(liste);
 		long time2 = System.nanoTime();
 		long timeDiff = time2 - time1;
 		
