@@ -252,28 +252,28 @@ public class Binomi extends JFrame {
 		btnPasDreiAusrechnen.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnPasDreiAusrechnen.setBounds(110, 349, 61, 35);
 		contentPane.add(btnPasDreiAusrechnen);
-		
+
 		JButton btnPasDrei_n_a = new JButton("+");
 		btnPasDrei_n_a.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				tfPasDrei_n.setText("" + (Integer.parseInt(tfPasDrei_n.getText()) + 1));
 				taPasDreiDreieckAusrechnen(taPasDreiDreieck);
-				
+
 			}
 		});
 		btnPasDrei_n_a.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnPasDrei_n_a.setBounds(181, 349, 61, 35);
 		contentPane.add(btnPasDrei_n_a);
-		
+
 		JButton btnPasDrei_n_s = new JButton("-");
 		btnPasDrei_n_s.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				if (Integer.parseInt(tfPasDrei_n.getText()) > 0)
-				tfPasDrei_n.setText("" + (Integer.parseInt(tfPasDrei_n.getText()) - 1));
+					tfPasDrei_n.setText("" + (Integer.parseInt(tfPasDrei_n.getText()) - 1));
 				taPasDreiDreieckAusrechnen(taPasDreiDreieck);
-				
+
 			}
 		});
 		btnPasDrei_n_s.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -287,13 +287,11 @@ public class Binomi extends JFrame {
 		else
 			return binKoeff(n - 1, k) + binKoeff(n - 1, k - 1);
 	}
-	
 	public void taPasDreiDreieckAusrechnen(JTextArea taPasDreiDreieck) {
 		int n = Integer.parseInt(tfPasDrei_n.getText());
 		int[][] dreieck = new int[n + 1][1];
 
 		dreieck[0][0] = 1;
-		
 		for (int m = n; m > 0; m--) {
 			dreieck[m] = new int[m + 1];
 			for (int k = 0; k < dreieck[m].length; k++)
@@ -303,8 +301,8 @@ public class Binomi extends JFrame {
 		taPasDreiDreieck.setText("");
 		for (int m = 0; m <= n; m++) {
 			if (m != 0)
-			taPasDreiDreieck.setText(taPasDreiDreieck.getText() + "\n");
-				
+				taPasDreiDreieck.setText(taPasDreiDreieck.getText() + "\n");
+
 			for (int k = 0; k < dreieck[m].length; k++) {
 				taPasDreiDreieck.setText(taPasDreiDreieck.getText() + dreieck[m][k] + " ");
 			}
