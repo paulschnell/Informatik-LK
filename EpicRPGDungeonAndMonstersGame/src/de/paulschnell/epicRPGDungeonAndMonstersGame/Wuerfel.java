@@ -1,17 +1,17 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
 public class Wuerfel {
-	final int anzahlSeiten;
+	private int seiten;
 	
-	public Wuerfel(int anzahlSeiten) {
-		this.anzahlSeiten = anzahlSeiten;
+	public Wuerfel(int seiten) {
+		this.seiten = seiten;
 	}
 	
 	public int wuerfeln() {
-		return (int) (Math.random() * anzahlSeiten) + 1;
+		return (int) (Math.random() * seiten + 1);
 	}
 	
-	public int getAnzahlSeiten() {
-		return anzahlSeiten;
+	public int getSeiten() {
+		return seiten;
 	}
 }
