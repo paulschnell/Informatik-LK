@@ -11,7 +11,7 @@ public class Waffe {
 		this.magie = magie;
 	}
 	
-	int bonusBerechnen() {
+	public int bonusBerechnen() {
 		switch (material) {
 		case "Stein":
 			bonus += 2;
