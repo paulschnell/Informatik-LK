@@ -7,10 +7,10 @@ public class Held {
 	private int lebenspunkte;
 	private int maxLebenspunkte;
 	private String imgSource;
-	
+
 	private Waffe waffe;
 
-	public Held(String name, int staerke, int angriffswert, int lebenspunkte, Waffe waffe, String imgSource) {
+	public Held(String name, int staerke, int angriffswert, int lebenspunkte, String imgSource) {
 		this.name = name;
 		this.staerke = staerke;
 		this.angriffswert = angriffswert;
@@ -19,13 +19,16 @@ public class Held {
 		this.waffe = waffe;
 		this.imgSource = imgSource;
 	}
-	
+
 	void angreifen(Monster monster, Kampfregel kampfregel) {
 		kampfregel.kampf(this, monster);
 	}
-	
+
 	int angriffswertBerechnen() {
-		return angriffswert + staerke + waffe.bonusBerechnen();
+		if (waffe != null)
+			return angriffswert + staerke + waffe.bonusBerechnen();
+		else
+			return angriffswert + staerke;
 	}
 
 	public int getStaerke() {
@@ -48,6 +51,10 @@ public class Held {
 		return waffe;
 	}
 
+	public void setWaffe(Waffe waffe) {
+		this.waffe = waffe;
+	}
+
 	public int getLebenspunkte() {
 		return lebenspunkte;
 	}
@@ -55,7 +62,7 @@ public class Held {
 	public void setLebenspunkte(int lebenspunkte) {
 		this.lebenspunkte = lebenspunkte;
 	}
-	
+
 	public int getMaxLebenspunkte() {
 		return maxLebenspunkte;
 	}
@@ -63,5 +70,5 @@ public class Held {
 	public String getImgSource() {
 		return imgSource;
 	}
-	
+
 }

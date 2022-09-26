@@ -4,11 +4,13 @@ public class Waffe {
 	private int bonus;
 	private String material;
 	private int magie;
+	private String imgSource;
 	
-	public Waffe(int bonus, String material, int magie) {
+	public Waffe(int bonus, String material, int magie, String imgSource) {
 		this.bonus = bonus;
 		this.material = material;
 		this.magie = magie;
+		this.imgSource = imgSource;
 	}
 	
 	public int bonusBerechnen() {
@@ -43,5 +45,9 @@ public class Waffe {
 
 	public int getMagie() {
 		return magie;
+	}
+	
+	public String getImgSource() {
+		return imgSource;
 	}
 }
