@@ -6,16 +6,16 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 
 public class Window extends JFrame {
 
@@ -30,6 +30,7 @@ public class Window extends JFrame {
 	private JLabel lblMonsterBild;
 	private JLabel lblHeldBild;
 	private JLabel lblWaffe;
+	private JLabel lblMonsterName;
 
 	private Held[] helden;
 	private Monster[] monster;
@@ -37,9 +38,11 @@ public class Window extends JFrame {
 	private int currentMonster = 0;
 	private int currentHeld = 0;
 
-	private Waffe revolver = new Waffe(5, "Diamant", 0, "/de/paulschnell/epicRPGDungeonAndMonstersGame/revolver.png");
-	private Waffe pancada = new Waffe(6, "Stein", 0, "");
-	private JLabel lblMonsterName;
+	private Inventar inv = new Inventar();
+	private InventarWindow invWin = new InventarWindow(inv);
+
+	private Waffe revolver = new Waffe("Revolver", 5, "Diamant", 0, "/de/paulschnell/epicRPGDungeonAndMonstersGame/revolver.png");
+	private Waffe pancada = new Waffe("pancada", 6, "Stein", 0, "/de/paulschnell/epicRPGDungeonAndMonstersGame/pancada.jpg");
 
 	/**
 	 * Create the frame.
@@ -57,10 +60,11 @@ public class Window extends JFrame {
 
 		// Load
 		helden = new Held[] { new Held("Erik", 2, 1, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/erik.png"),
-				new Held("Loud", 3, 2, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/pancada.jpg") };
+				new Held("Loud", 3, 2, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/loud.png") };
 
 		helden[0].setWaffe(revolver);
-		
+		helden[1].setWaffe(pancada);
+
 		monster = new Monster[] {
 				new Monster(5, 100, "Günther und seine Crew von Olaf",
 						"/de/paulschnell/epicRPGDungeonAndMonstersGame/g\u00FCnther_und_seine_crew_von_olaf.gif"),
@@ -173,8 +177,18 @@ public class Window extends JFrame {
 		contentPane.add(lblHeldBild);
 
 		lblWaffe = new JLabel("");
-		lblWaffe.setBounds(363, 400, 150, 129);
+		lblWaffe.setBounds(387, 418, 150, 129);
 		contentPane.add(lblWaffe);
+
+		JButton btnInventar = new JButton("Inventar \u00F6ffnen");
+		btnInventar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				invWin.run();
+			}
+		});
+		btnInventar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnInventar.setBounds(254, 614, 127, 27);
+		contentPane.add(btnInventar);
 
 		refresh();
 	}
@@ -188,12 +202,12 @@ public class Window extends JFrame {
 		lblMonsterIndex.setText(Integer.toString(currentMonster + 1) + "/" + monster.length);
 		lblMonsterName.setText(monster[currentMonster].getName());
 
-		lblMonsterBild.setIcon(new ImageIcon(Window.class.getResource(monster[currentMonster].getImgSource())));
-		lblHeldBild.setIcon(new ImageIcon(Window.class.getResource(helden[currentHeld].getImgSource())));
 		if (helden[currentHeld].getWaffe() != null)
 			lblWaffe.setIcon(new ImageIcon(Window.class.getResource(helden[currentHeld].getWaffe().getImgSource())));
 		else
 			lblWaffe.setIcon(null);
+		lblMonsterBild.setIcon(new ImageIcon(Window.class.getResource(monster[currentMonster].getImgSource())));
+		lblHeldBild.setIcon(new ImageIcon(Window.class.getResource(helden[currentHeld].getImgSource())));
 	}
 
 	public void run() {

@@ -4,8 +4,9 @@ import java.awt.EventQueue;
 
 public class EpicRPGDungeonAndMonstersGame {
 
+	public static Window frame = new Window();
+	
 	public static void main(String[] args) {
-		Window frame = new Window();
 		frame.run();
 	}
 
