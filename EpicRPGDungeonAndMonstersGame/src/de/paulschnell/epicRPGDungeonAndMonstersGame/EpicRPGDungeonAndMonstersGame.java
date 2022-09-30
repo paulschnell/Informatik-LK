@@ -1,5 +1,7 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.windows.Window;
+
 public class EpicRPGDungeonAndMonstersGame {
 
 	// Für den Verlauf des Projektes und falls irgendwelche Probleme mit den Bilder

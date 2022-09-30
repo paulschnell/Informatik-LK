@@ -1,4 +1,4 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.windows;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -16,6 +16,13 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Drops;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Kampfregel;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Monster;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Shop;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffen;
 
 public class Window extends JFrame {
 
@@ -39,7 +46,10 @@ public class Window extends JFrame {
 	private int currentHeld = 0;
 
 	private Inventar inv = new Inventar();
+	private Shop shop = new Shop();
+
 	private InventarWindow invWin = new InventarWindow(inv);
+	private ShopWindow shopWin = new ShopWindow(shop);
 
 	/**
 	 * Create the frame.
@@ -60,7 +70,7 @@ public class Window extends JFrame {
 				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/g\u00FCnther_und_seine_crew_von_olaf.gif"),
 				new Monster(10, 100, "Der schreckliche Sven", new Drops(2, 5, 0.0f, null),
 						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/der_schreckliche_sven.jpg"),
-				new Monster(15, 100, "OpTic Gaming", new Drops(5, 10, 1.0f, Waffen.zombieArm),
+				new Monster(15, 100, "OpTic Gaming", new Drops(5, 10, 0.2f, Waffen.zombieArm),
 						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/optic_gaming.png"),
 				new Monster(20, 100, "Lord Garmadon", new Drops(8, 20, 0.8f, Waffen.goldeneWaffen),
 						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/lord_garmadon.jpg"),
@@ -187,7 +197,7 @@ public class Window extends JFrame {
 			}
 		});
 		btnInventar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnInventar.setBounds(254, 614, 127, 27);
+		btnInventar.setBounds(447, 616, 127, 27);
 		contentPane.add(btnInventar);
 
 		JLabel lblGoldName = new JLabel("Gold:");
@@ -201,6 +211,17 @@ public class Window extends JFrame {
 		lblGold.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblGold.setBounds(447, 53, 39, 27);
 		contentPane.add(lblGold);
+
+		JButton btnShop = new JButton("Shop");
+		btnShop.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				shopWin.run();
+				shopWin.refresh();
+			}
+		});
+		btnShop.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnShop.setBounds(736, 616, 127, 27);
+		contentPane.add(btnShop);
 
 		refresh();
 	}

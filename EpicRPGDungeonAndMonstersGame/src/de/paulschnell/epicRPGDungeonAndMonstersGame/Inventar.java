@@ -10,8 +10,8 @@ public class Inventar {
 	private int gold = 0;
 
 	public Inventar() {
-		addHeld(new Held("Erik", 2, 1, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/erik.png"));
-		addHeld(new Held("Loud", 3, 2, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/loud.png"));
+		addHeld(Helden.erik);
+		addHeld(Helden.loud);
 
 		addWaffe(new Waffe("Revolver", 5, "Diamant", 0,
 				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/revolver.png"));

@@ -1,4 +1,4 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.windows;
 
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -19,6 +19,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Held;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
 
 public class InventarWindow extends JFrame {
 
