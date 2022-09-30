@@ -6,15 +6,13 @@ public class Waffe {
 	private String material;
 	private int magie;
 	private String imgSource;
-	private Held[] moeglicheHelden;
 
-	public Waffe(String name, int bonus, String material, int magie, String imgSource, Held... moeglicheHelden) {
+	public Waffe(String name, int bonus, String material, int magie, String imgSource) {
 		this.name = name;
 		this.bonus = bonus;
 		this.material = material;
 		this.magie = magie;
 		this.imgSource = imgSource;
-		this.moeglicheHelden = moeglicheHelden;
 	}
 
 	public int bonusBerechnen() {
@@ -27,6 +25,9 @@ public class Waffe {
 			break;
 		case "Holz":
 			bonus += 1;
+			break;
+		case "Gold":
+			bonus += 3;
 			break;
 		case "Schwarzeichenholz":
 			bonus += 5;
@@ -57,16 +58,5 @@ public class Waffe {
 
 	public String getImgSource() {
 		return imgSource;
-	}
-
-	public Held[] getMoeglicheHelden() {
-		return moeglicheHelden;
-	}
-
-	public boolean kannTragen(Held held) {
-		for (int i = 0; i < moeglicheHelden.length; i++)
-			if (moeglicheHelden[i] == held)
-				return true;
-		return false;
 	}
 }

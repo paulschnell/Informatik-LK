@@ -5,13 +5,15 @@ public class Monster {
 	private int lebenspunkte;
 	private int maxLebenspunkte;
 	private String name;
+	private Drops drops;
 	private String imgSource;
 	
-	public Monster(int angriffswert, int lebenspunkte, String name, String imgSource) {
+	public Monster(int angriffswert, int lebenspunkte, String name, Drops drops, String imgSource) {
 		this.angriffswert = angriffswert;
 		this.lebenspunkte = lebenspunkte;
 		this.maxLebenspunkte = lebenspunkte;
 		this.name = name;
+		this.drops = drops;
 		this.imgSource = imgSource;
 	}
 
@@ -41,6 +43,10 @@ public class Monster {
 
 	public void setImgSource(String imgSource) {
 		this.imgSource = imgSource;
+	}
+	
+	public Drops getDrops() {
+		return drops;
 	}
 	
 }
