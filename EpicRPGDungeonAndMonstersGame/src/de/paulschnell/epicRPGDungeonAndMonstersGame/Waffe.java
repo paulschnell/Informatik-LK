@@ -39,7 +39,7 @@ public class Waffe {
 		bonus += magie;
 		return bonus;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

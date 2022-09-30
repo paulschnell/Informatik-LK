@@ -13,8 +13,10 @@ public class Inventar {
 		addHeld(new Held("Erik", 2, 1, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/erik.png"));
 		addHeld(new Held("Loud", 3, 2, 100, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/loud.png"));
 
-		addWaffe(new Waffe("Revolver", 5, "Diamant", 0, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/revolver.png"));
-		addWaffe(new Waffe("pancada", 6, "Stein", 0, "/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/pancada.jpg"));
+		addWaffe(new Waffe("Revolver", 5, "Diamant", 0,
+				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/revolver.png"));
+		addWaffe(new Waffe("pancada", 6, "Stein", 0,
+				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/pancada.jpg"));
 	}
 
 	public ArrayList<Held> getFreigeschalteteHelden() {
@@ -50,11 +52,11 @@ public class Inventar {
 		if (gold < 0)
 			gold = 0;
 	}
-	
+
 	public void setGold(int gold) {
 		this.gold = gold;
 	}
-	
+
 	public int getGold() {
 		return gold;
 	}

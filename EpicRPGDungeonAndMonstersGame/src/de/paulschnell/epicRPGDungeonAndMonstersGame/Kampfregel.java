@@ -3,16 +3,16 @@ package de.paulschnell.epicRPGDungeonAndMonstersGame;
 public class Kampfregel {
 	private Wuerfel wuerfel6;
 	private Wuerfel wuerfel10;
-	
-  public Kampfregel() {
+
+	public Kampfregel() {
 		this.wuerfel6 = new Wuerfel(6);
 		this.wuerfel10 = new Wuerfel(10);
 	}
-	
+
 	public void kampf(Held held, Monster monster) {
 		int wertHeld = held.angriffswertBerechnen() * wuerfel6.wuerfeln();
 		int wertMonster = monster.getAngriffswert() * wuerfel10.wuerfeln();
-		
+
 		if (wertHeld > wertMonster) {
 			monster.setLebenspunkte(monster.getLebenspunkte() - 10);
 		} else {
