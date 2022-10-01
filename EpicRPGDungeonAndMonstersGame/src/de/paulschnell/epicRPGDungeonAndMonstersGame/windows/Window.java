@@ -46,7 +46,7 @@ public class Window extends JFrame {
 	private int currentHeld = 0;
 
 	private Inventar inv = new Inventar();
-	private Shop shop = new Shop();
+	private Shop shop = new Shop(inv);
 
 	private InventarWindow invWin = new InventarWindow(inv);
 	private ShopWindow shopWin = new ShopWindow(shop);

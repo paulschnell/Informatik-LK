@@ -1,6 +1,6 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
-public class Held extends ShopEntry {
+public class Held {
 	private String name;
 	private int staerke;
 	private int angriffswert;
@@ -10,8 +10,7 @@ public class Held extends ShopEntry {
 
 	private Waffe waffe;
 
-	public Held(String name, int staerke, int angriffswert, int lebenspunkte, String imgSource, int kosten) {
-		super(kosten);
+	public Held(String name, int staerke, int angriffswert, int lebenspunkte, String imgSource) {
 		this.name = name;
 		this.staerke = staerke;
 		this.angriffswert = angriffswert;
