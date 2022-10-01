@@ -17,9 +17,9 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.Shop;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.ShopHeldenEntry;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.ShopWaffenEntry;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.Shop;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
 
 public class ShopWindow extends JFrame {
 

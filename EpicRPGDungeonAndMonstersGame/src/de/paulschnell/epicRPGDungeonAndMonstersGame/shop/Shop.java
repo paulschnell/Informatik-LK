@@ -1,4 +1,7 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.shop;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Helden;
 
 public class Shop {
 	

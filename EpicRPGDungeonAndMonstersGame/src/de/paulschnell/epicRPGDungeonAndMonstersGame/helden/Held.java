@@ -1,4 +1,8 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.helden;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Kampfregel;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Monster;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
 
 public class Held {
 	private String name;
@@ -20,11 +24,16 @@ public class Held {
 		this.imgSource = imgSource;
 	}
 
+	// erfolgreich? ja / nein
+	public boolean ability() {
+		return false;
+	}
+
 	public void angreifen(Monster monster, Kampfregel kampfregel) {
 		kampfregel.kampf(this, monster);
 	}
 
-	int angriffswertBerechnen() {
+	public int angriffswertBerechnen() {
 		if (waffe != null)
 			return angriffswert + staerke + waffe.bonusBerechnen();
 		else

@@ -1,4 +1,4 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.shop;
 
 public class ShopEntry {
 

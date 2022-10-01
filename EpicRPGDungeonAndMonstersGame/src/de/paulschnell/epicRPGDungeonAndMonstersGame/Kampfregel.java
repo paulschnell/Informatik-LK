@@ -1,5 +1,7 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
+
 public class Kampfregel {
 	private Wuerfel wuerfel6;
 	private Wuerfel wuerfel10;

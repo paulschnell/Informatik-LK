@@ -2,6 +2,9 @@ package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
 import java.util.ArrayList;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Helden;
+
 public class Inventar {
 
 	private ArrayList<Held> freigeschalteteHelden = new ArrayList<>();

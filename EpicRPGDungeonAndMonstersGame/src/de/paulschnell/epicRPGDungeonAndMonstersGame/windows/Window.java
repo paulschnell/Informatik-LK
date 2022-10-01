@@ -21,8 +21,11 @@ import de.paulschnell.epicRPGDungeonAndMonstersGame.Drops;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Kampfregel;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Monster;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.Shop;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffen;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Krieger;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Magier;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.Shop;
 
 public class Window extends JFrame {
 
@@ -39,6 +42,9 @@ public class Window extends JFrame {
 	private JLabel lblWaffe;
 	private JLabel lblMonsterName;
 	private JLabel lblGold;
+	private JLabel lblAbilityChargeName;
+	private JLabel lblAbilityCharge;
+	private JButton btnAbilityNutzen;
 
 	private Monster[] monster;
 
@@ -98,8 +104,9 @@ public class Window extends JFrame {
 		JButton btnKämpfen = new JButton("K\u00C4MPFEN");
 		btnKämpfen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
 
-				inv.getFreigeschalteteHelden().get(currentHeld).angreifen(monster[currentMonster], new Kampfregel());
+				held.angreifen(monster[currentMonster], new Kampfregel());
 
 				if (monster[currentMonster].getLebenspunkte() <= 0) {
 					if (currentMonster == monster.length - 1) {
@@ -114,10 +121,19 @@ public class Window extends JFrame {
 
 						currentMonster++;
 					}
-				} else if (inv.getFreigeschalteteHelden().get(currentHeld).getLebenspunkte() <= 0) {
+				} else if (held.getLebenspunkte() <= 0) {
 					lblFertig.setText("Verloren");
 					btnKämpfen.setEnabled(false);
 					comboBox.setEnabled(false);
+				}
+
+				for (Held curHeld : inv.getFreigeschalteteHelden()) {
+					if (curHeld instanceof Krieger) {
+						((Krieger) curHeld).setAusdauer(((Krieger) curHeld).getAusdauer() - 3);
+						((Krieger) curHeld).erhohlen();
+					} else if (curHeld instanceof Magier) {
+						((Magier) curHeld).aufladen();
+					}
 				}
 
 				refresh();
@@ -154,6 +170,15 @@ public class Window extends JFrame {
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentHeld = comboBox.getSelectedIndex();
+				
+				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
+				
+				if (held instanceof Magier) {
+					btnAbilityNutzen.setEnabled(true);
+				} else {
+					btnAbilityNutzen.setEnabled(false);
+				}
+				
 				refresh();
 			}
 		});
@@ -223,28 +248,69 @@ public class Window extends JFrame {
 		btnShop.setBounds(736, 616, 127, 27);
 		contentPane.add(btnShop);
 
+		lblAbilityChargeName = new JLabel("");
+		lblAbilityChargeName.setForeground(Color.WHITE);
+		lblAbilityChargeName.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblAbilityChargeName.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblAbilityChargeName.setBounds(43, 469, 127, 27);
+		contentPane.add(lblAbilityChargeName);
+
+		lblAbilityCharge = new JLabel("");
+		lblAbilityCharge.setHorizontalAlignment(SwingConstants.LEFT);
+		lblAbilityCharge.setForeground(Color.WHITE);
+		lblAbilityCharge.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblAbilityCharge.setBounds(180, 469, 52, 27);
+		contentPane.add(lblAbilityCharge);
+
+		btnAbilityNutzen = new JButton("Ability nutzen");
+		btnAbilityNutzen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (inv.getFreigeschalteteHelden().get(currentHeld).ability())
+					btnAbilityNutzen.setEnabled(false);
+				
+				refresh();
+			}
+		});
+		btnAbilityNutzen.setEnabled(false);
+		btnAbilityNutzen.setBounds(314, 473, 121, 27);
+		contentPane.add(btnAbilityNutzen);
+
 		refresh();
 	}
 
 	public void refresh() {
-		pbHeld.setMaximum(inv.getFreigeschalteteHelden().get(currentHeld).getMaxLebenspunkte());
-		pbHeld.setValue(inv.getFreigeschalteteHelden().get(currentHeld).getLebenspunkte());
+		Held held = inv.getFreigeschalteteHelden().get(currentHeld);
+
+		pbHeld.setMaximum(held.getMaxLebenspunkte());
+		pbHeld.setValue(held.getLebenspunkte());
 		pbMonster.setMaximum(monster[currentMonster].getMaxLebenspunkte());
 		pbMonster.setValue(monster[currentMonster].getLebenspunkte());
 
 		lblMonsterIndex.setText(Integer.toString(currentMonster + 1) + "/" + monster.length);
 		lblMonsterName.setText(monster[currentMonster].getName());
 
-		if (inv.getFreigeschalteteHelden().get(currentHeld).getWaffe() != null)
-			lblWaffe.setIcon(new ImageIcon(Window.class
-					.getResource(inv.getFreigeschalteteHelden().get(currentHeld).getWaffe().getImgSource())));
+		if (held.getWaffe() != null)
+			lblWaffe.setIcon(new ImageIcon(Window.class.getResource(held.getWaffe().getImgSource())));
 		else
 			lblWaffe.setIcon(null);
 		lblMonsterBild.setIcon(new ImageIcon(Window.class.getResource(monster[currentMonster].getImgSource())));
-		lblHeldBild.setIcon(new ImageIcon(
-				Window.class.getResource(inv.getFreigeschalteteHelden().get(currentHeld).getImgSource())));
+		lblHeldBild.setIcon(new ImageIcon(Window.class.getResource(held.getImgSource())));
 
 		lblGold.setText(Integer.toString(inv.getGold()));
+
+		if (held instanceof Krieger) {
+			lblAbilityChargeName.setText("Ausdauer:");
+			lblAbilityCharge.setText(Integer.toString(((Krieger) held).getAusdauer()));
+			btnAbilityNutzen.setEnabled(false);
+		} else if (held instanceof Magier) {
+			lblAbilityChargeName.setText("Zauberkraft:");
+			lblAbilityCharge.setText(Integer.toString(((Magier) held).getZauberkraft()));
+			btnAbilityNutzen.setEnabled(true);
+		} else {
+			lblAbilityChargeName.setText("");
+			lblAbilityCharge.setText("");
+			btnAbilityNutzen.setEnabled(false);
+		}
 	}
 
 	public void run() {

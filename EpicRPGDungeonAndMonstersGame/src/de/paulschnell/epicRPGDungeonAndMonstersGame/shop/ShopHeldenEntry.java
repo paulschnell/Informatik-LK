@@ -1,4 +1,6 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.shop;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
 
 public class ShopHeldenEntry extends ShopEntry {
 

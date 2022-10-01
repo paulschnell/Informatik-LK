@@ -21,9 +21,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.Held;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Krieger;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Magier;
 
 public class InventarWindow extends JFrame {
 
@@ -39,6 +41,7 @@ public class InventarWindow extends JFrame {
 	private JLabel lblMaterial;
 	private JLabel lblMagie;
 	private JComboBox cbWaffeAuswählen;
+	private JLabel lblTyp;
 
 	/**
 	 * Create the frame.
@@ -57,7 +60,7 @@ public class InventarWindow extends JFrame {
 		setAlwaysOnTop(true);
 		setTitle("Inventar");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 642, 534);
+		setBounds(100, 100, 642, 564);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -91,6 +94,13 @@ public class InventarWindow extends JFrame {
 				lblAngriffwert.setText(Integer.toString(currentHeld.getAngriffswert()));
 				lblStärke.setText(Integer.toString(currentHeld.getStaerke()));
 				lblLebenspunkte.setText(Integer.toString(currentHeld.getLebenspunkte()));
+				if (currentHeld instanceof Krieger) {
+					lblTyp.setText("Krieger");
+				} else if (currentHeld instanceof Magier) {
+					lblTyp.setText("Magier");
+				} else {
+					lblTyp.setText("Normie");
+				}
 
 				cbWaffeAuswählen.setEnabled(true);
 				int curHeldIndexWaff = 0;
@@ -226,6 +236,16 @@ public class InventarWindow extends JFrame {
 		cbWaffeAuswählen.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cbWaffeAuswählen.setBounds(336, 56, 256, 41);
 		contentPane.add(cbWaffeAuswählen);
+		
+		JLabel lblTypName = new JLabel("Typ");
+		lblTypName.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblTypName.setBounds(10, 490, 72, 14);
+		contentPane.add(lblTypName);
+		
+		lblTyp = new JLabel("");
+		lblTyp.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblTyp.setBounds(194, 490, 72, 14);
+		contentPane.add(lblTyp);
 
 		refresh();
 	}

@@ -1,4 +1,6 @@
-package de.paulschnell.epicRPGDungeonAndMonstersGame;
+package de.paulschnell.epicRPGDungeonAndMonstersGame.shop;
+
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
 
 public class ShopWaffenEntry extends ShopEntry {
 
