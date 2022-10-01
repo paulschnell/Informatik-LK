@@ -1,5 +1,6 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame.shop;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Helden;
 
@@ -12,7 +13,7 @@ public class Shop {
 
 	public Shop(Inventar inv) {
 		this.inv = inv;
-		heldenEntries[1] = new ShopHeldenEntry(Helden.erik, 5);
+		waffenEntries[0] = new ShopWaffenEntry(EpicRPGDungeonAndMonstersGame.waffenLoader.get().get(0), 0);
 	}
 	
 	public Inventar getInv() {

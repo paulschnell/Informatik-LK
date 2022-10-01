@@ -213,7 +213,7 @@ public class InventarWindow extends JFrame {
 
 		lblMaterial = new JLabel("");
 		lblMaterial.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblMaterial.setBounds(520, 456, 72, 14);
+		lblMaterial.setBounds(474, 456, 118, 14);
 		contentPane.add(lblMaterial);
 
 		lblMagie = new JLabel("");

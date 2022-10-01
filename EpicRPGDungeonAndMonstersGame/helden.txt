@@ -1,0 +1,2 @@
+Erik magier 2 1 100 erik.png 4
+Loud krieger 2 1 100 loud.png 5
