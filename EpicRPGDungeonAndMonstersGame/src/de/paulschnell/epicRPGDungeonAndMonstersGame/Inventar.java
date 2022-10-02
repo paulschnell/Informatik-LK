@@ -3,7 +3,6 @@ package de.paulschnell.epicRPGDungeonAndMonstersGame;
 import java.util.ArrayList;
 
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Helden;
 
 public class Inventar {
 
@@ -13,13 +12,7 @@ public class Inventar {
 	private int gold = 0;
 
 	public Inventar() {
-		addHeld(Helden.erik);
-		addHeld(Helden.loud);
-
-		addWaffe(new Waffe("Revolver", 5, "Diamant", 0,
-				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/revolver.png"));
-		addWaffe(new Waffe("pancada", 6, "Stein", 0,
-				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/pancada.jpg"));
+		addHeld(EpicRPGDungeonAndMonstersGame.heldenLoader.get().get(0));
 	}
 
 	public ArrayList<Held> getFreigeschalteteHelden() {

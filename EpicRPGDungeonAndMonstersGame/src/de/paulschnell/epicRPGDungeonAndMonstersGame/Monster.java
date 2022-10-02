@@ -1,5 +1,7 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopEntry;
+
 public class Monster {
 	private int angriffswert;
 	private int lebenspunkte;
@@ -7,6 +9,8 @@ public class Monster {
 	private String name;
 	private Drops drops;
 	private String imgSource;
+	
+	private ShopEntry[] entries = new ShopEntry[4]; // items, die im shop sind, wenn dieses das aktuelle monster ist
 
 	public Monster(int angriffswert, int lebenspunkte, String name, Drops drops, String imgSource) {
 		this.angriffswert = angriffswert;
@@ -49,4 +53,12 @@ public class Monster {
 		return drops;
 	}
 
+	public ShopEntry[] getEntries() {
+		return entries;
+	}
+	
+	public void setEntry(int index, ShopEntry entry) {
+		this.entries[index] = entry;
+	}
+	
 }

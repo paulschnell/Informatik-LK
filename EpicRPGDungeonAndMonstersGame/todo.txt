@@ -1,0 +1,6 @@
+helden und waffen erstellen
+hintergrund bild für window
+skalierbar
+
+bug fixes:
+	combo box in window refresh

@@ -18,14 +18,16 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Drops;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Kampfregel;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Monster;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffen;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Krieger;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Magier;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.Shop;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
 
 public class Window extends JFrame {
 
@@ -45,8 +47,6 @@ public class Window extends JFrame {
 	private JLabel lblAbilityChargeName;
 	private JLabel lblAbilityCharge;
 	private JButton btnAbilityNutzen;
-
-	private Monster[] monster;
 
 	private int currentMonster = 0;
 	private int currentHeld = 0;
@@ -71,23 +71,6 @@ public class Window extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		// Load
-		monster = new Monster[] { new Monster(5, 100, "Günther und seine Crew von Olaf", new Drops(1, 3, 0.0f, null),
-				"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/g\u00FCnther_und_seine_crew_von_olaf.gif"),
-				new Monster(10, 100, "Der schreckliche Sven", new Drops(2, 5, 0.0f, null),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/der_schreckliche_sven.jpg"),
-				new Monster(15, 100, "OpTic Gaming", new Drops(5, 10, 0.2f, Waffen.zombieArm),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/optic_gaming.png"),
-				new Monster(20, 100, "Lord Garmadon", new Drops(8, 20, 0.8f, Waffen.goldeneWaffen),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/lord_garmadon.jpg"),
-				new Monster(20, 100, "Der Fliegende Holländer", new Drops(15, 20, 0.0f, null),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/der_fliegende_hollander.png"),
-				new Monster(25, 100, "Evil Morty", new Drops(20, 30, 0.0f, null),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/evil_morty.jpg"),
-				new Monster(30, 100, "this guy", new Drops(100, 100, 0.0f, null),
-						"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/this_guy.jpg") };
-		// Load
-
 		JLabel lblMonsterTitle = new JLabel("Monster");
 		lblMonsterTitle.setForeground(Color.WHITE);
 		lblMonsterTitle.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -101,29 +84,29 @@ public class Window extends JFrame {
 		lblHeldTitle.setBounds(21, 10, 52, 27);
 		contentPane.add(lblHeldTitle);
 
-		JButton btnKämpfen = new JButton("K\u00C4MPFEN");
-		btnKämpfen.addActionListener(new ActionListener() {
+		JButton btnKaempfen = new JButton("K\u00C4MPFEN");
+		btnKaempfen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
 
-				held.angreifen(monster[currentMonster], new Kampfregel());
+				held.angreifen(EpicRPGDungeonAndMonstersGame.monster[currentMonster], new Kampfregel());
 
-				if (monster[currentMonster].getLebenspunkte() <= 0) {
-					if (currentMonster == monster.length - 1) {
+				if (EpicRPGDungeonAndMonstersGame.monster[currentMonster].getLebenspunkte() <= 0) {
+					if (currentMonster == EpicRPGDungeonAndMonstersGame.monster.length - 1) {
 						lblFertig.setText("Gewonnen");
-						inv.addGold(monster[currentMonster].getDrops().münzen());
-						btnKämpfen.setEnabled(false);
+						inv.addGold(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().muenzen());
+						btnKaempfen.setEnabled(false);
 						comboBox.setEnabled(false);
 					} else {
-						inv.addGold(monster[currentMonster].getDrops().münzen());
-						if (monster[currentMonster].getDrops().dropWaffe())
-							inv.addWaffe(monster[currentMonster].getDrops().getWaffe());
+						inv.addGold(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().muenzen());
+						if (EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().dropWaffe())
+							inv.addWaffe(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().getWaffe());
 
 						currentMonster++;
 					}
 				} else if (held.getLebenspunkte() <= 0) {
 					lblFertig.setText("Verloren");
-					btnKämpfen.setEnabled(false);
+					btnKaempfen.setEnabled(false);
 					comboBox.setEnabled(false);
 				}
 
@@ -140,9 +123,9 @@ public class Window extends JFrame {
 
 			}
 		});
-		btnKämpfen.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnKämpfen.setBounds(591, 607, 135, 40);
-		contentPane.add(btnKämpfen);
+		btnKaempfen.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnKaempfen.setBounds(591, 607, 135, 40);
+		contentPane.add(btnKaempfen);
 
 		pbHeld = new JProgressBar();
 		pbHeld.setForeground(new Color(0, 255, 0));
@@ -163,26 +146,21 @@ public class Window extends JFrame {
 		contentPane.add(lblFertig);
 
 		comboBox = new JComboBox();
-		String[] heldenNamen = new String[inv.getFreigeschalteteHelden().size()];
-		for (int i = 0; i < inv.getFreigeschalteteHelden().size(); i++) {
-			heldenNamen[i] = inv.getFreigeschalteteHelden().get(i).getName();
-		}
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				currentHeld = comboBox.getSelectedIndex();
-				
+
 				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
-				
+
 				if (held instanceof Magier) {
 					btnAbilityNutzen.setEnabled(true);
 				} else {
 					btnAbilityNutzen.setEnabled(false);
 				}
-				
+
 				refresh();
 			}
 		});
-		comboBox.setModel(new DefaultComboBoxModel(heldenNamen));
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBox.setBounds(21, 607, 215, 40);
 		contentPane.add(comboBox);
@@ -267,12 +245,12 @@ public class Window extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				if (inv.getFreigeschalteteHelden().get(currentHeld).ability())
 					btnAbilityNutzen.setEnabled(false);
-				
+
 				refresh();
 			}
 		});
 		btnAbilityNutzen.setEnabled(false);
-		btnAbilityNutzen.setBounds(314, 473, 121, 27);
+		btnAbilityNutzen.setBounds(242, 469, 121, 27);
 		contentPane.add(btnAbilityNutzen);
 
 		refresh();
@@ -283,17 +261,19 @@ public class Window extends JFrame {
 
 		pbHeld.setMaximum(held.getMaxLebenspunkte());
 		pbHeld.setValue(held.getLebenspunkte());
-		pbMonster.setMaximum(monster[currentMonster].getMaxLebenspunkte());
-		pbMonster.setValue(monster[currentMonster].getLebenspunkte());
+		pbMonster.setMaximum(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getMaxLebenspunkte());
+		pbMonster.setValue(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getLebenspunkte());
 
-		lblMonsterIndex.setText(Integer.toString(currentMonster + 1) + "/" + monster.length);
-		lblMonsterName.setText(monster[currentMonster].getName());
+		lblMonsterIndex
+				.setText(Integer.toString(currentMonster + 1) + "/" + EpicRPGDungeonAndMonstersGame.monster.length);
+		lblMonsterName.setText(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getName());
 
 		if (held.getWaffe() != null)
 			lblWaffe.setIcon(new ImageIcon(Window.class.getResource(held.getWaffe().getImgSource())));
 		else
 			lblWaffe.setIcon(null);
-		lblMonsterBild.setIcon(new ImageIcon(Window.class.getResource(monster[currentMonster].getImgSource())));
+		lblMonsterBild.setIcon(new ImageIcon(
+				Window.class.getResource(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getImgSource())));
 		lblHeldBild.setIcon(new ImageIcon(Window.class.getResource(held.getImgSource())));
 
 		lblGold.setText(Integer.toString(inv.getGold()));
@@ -311,6 +291,19 @@ public class Window extends JFrame {
 			lblAbilityCharge.setText("");
 			btnAbilityNutzen.setEnabled(false);
 		}
+
+		for (int i = 0; i < 2; i++)
+			shop.setHeldenEntry(i,
+					(ShopHeldenEntry) EpicRPGDungeonAndMonstersGame.monster[currentMonster].getEntries()[i]);
+		for (int i = 0; i < 2; i++)
+			shop.setWaffenEntry(i,
+					(ShopWaffenEntry) EpicRPGDungeonAndMonstersGame.monster[currentMonster].getEntries()[i + 2]);
+	
+		String[] heldenNamen = new String[inv.getFreigeschalteteHelden().size()];
+		for (int i = 0; i < inv.getFreigeschalteteHelden().size(); i++) {
+			heldenNamen[i] = inv.getFreigeschalteteHelden().get(i).getName();
+		}
+		comboBox.setModel(new DefaultComboBoxModel(heldenNamen));
 	}
 
 	public void run() {

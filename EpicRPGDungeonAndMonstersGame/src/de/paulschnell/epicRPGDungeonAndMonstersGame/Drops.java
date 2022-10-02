@@ -1,24 +1,24 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame;
 
 public class Drops {
-	private int minMünzen;
-	private int maxMünzen;
+	private int minMuenzen;
+	private int maxMuenzen;
 	private float wahrWaffe;
 	private Waffe waffe;
 
-	public Drops(int minMünzen, int maxMünzen, float wahrWaffe, Waffe waffe) {
-		this.minMünzen = minMünzen;
-		this.maxMünzen = maxMünzen;
+	public Drops(int minMuenzen, int maxMuenzen, float wahrWaffe, Waffe waffe) {
+		this.minMuenzen = minMuenzen;
+		this.maxMuenzen = maxMuenzen;
 		this.wahrWaffe = wahrWaffe;
 		this.waffe = waffe;
 	}
 
-	public int getMinMünzen() {
-		return minMünzen;
+	public int getMinMuenzen() {
+		return minMuenzen;
 	}
 
-	public int getMaxMünzen() {
-		return maxMünzen;
+	public int getMaxMuenzen() {
+		return maxMuenzen;
 	}
 
 	public float getWahrWaffe() {
@@ -28,9 +28,13 @@ public class Drops {
 	public Waffe getWaffe() {
 		return waffe;
 	}
+	
+	public void setWaffe(Waffe waffe) {
+		this.waffe = waffe;
+	}
 
-	public int münzen() {
-		return (int) (Math.random() * maxMünzen) + minMünzen;
+	public int muenzen() {
+		return (int) (Math.random() * maxMuenzen) + minMuenzen;
 	}
 
 	public boolean dropWaffe() {

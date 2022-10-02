@@ -35,12 +35,12 @@ public class InventarWindow extends JFrame {
 	private JList<?> listHelden;
 	private JList listWaffen;
 	private JLabel lblAngriffwert;
-	private JLabel lblStärke;
+	private JLabel lblStaerke;
 	private JLabel lblLebenspunkte;
 	private JLabel lblBonus;
 	private JLabel lblMaterial;
 	private JLabel lblMagie;
-	private JComboBox cbWaffeAuswählen;
+	private JComboBox cbWaffeAuswaehlen;
 	private JLabel lblTyp;
 
 	/**
@@ -80,9 +80,9 @@ public class InventarWindow extends JFrame {
 		listHelden.setSelectedIndex(0);
 		listHelden.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Wenn ein Held ausgewählt wird, das Inventar dann geschlossen und wieder
-				// geöffnet, wird der
-				// Selected Index verfälscht, und dieser Code repariert dieses Problem
+				// Wenn ein Held ausgewï¿½hlt wird, das Inventar dann geschlossen und wieder
+				// geï¿½ffnet, wird der
+				// Selected Index verfï¿½lscht, und dieser Code repariert dieses Problem
 				if (listHelden.getSelectedIndex() < 0
 						|| listHelden.getSelectedIndex() >= inv.getFreigeschalteteHelden().size())
 					listHelden.setSelectedIndex(0);
@@ -92,7 +92,7 @@ public class InventarWindow extends JFrame {
 					return;
 
 				lblAngriffwert.setText(Integer.toString(currentHeld.getAngriffswert()));
-				lblStärke.setText(Integer.toString(currentHeld.getStaerke()));
+				lblStaerke.setText(Integer.toString(currentHeld.getStaerke()));
 				lblLebenspunkte.setText(Integer.toString(currentHeld.getLebenspunkte()));
 				if (currentHeld instanceof Krieger) {
 					lblTyp.setText("Krieger");
@@ -102,7 +102,7 @@ public class InventarWindow extends JFrame {
 					lblTyp.setText("Normie");
 				}
 
-				cbWaffeAuswählen.setEnabled(true);
+				cbWaffeAuswaehlen.setEnabled(true);
 				int curHeldIndexWaff = 0;
 				if (currentHeld.getWaffe() != null) {
 					for (int i = 0; i < inv.getFreigeschalteteWaffen().size(); i++) {
@@ -112,7 +112,7 @@ public class InventarWindow extends JFrame {
 						}
 					}
 				}
-				cbWaffeAuswählen.setSelectedIndex(curHeldIndexWaff);
+				cbWaffeAuswaehlen.setSelectedIndex(curHeldIndexWaff);
 			}
 		});
 		listHelden.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -123,9 +123,9 @@ public class InventarWindow extends JFrame {
 		listWaffen.setSelectedIndex(0);
 		listWaffen.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Wenn ein Waffe ausgewählt wird, das Inventar dann geschlossen und wieder
-				// geöffnet, wird der
-				// Selected Index verfälscht, und dieser Code repariert dieses Problem
+				// Wenn ein Waffe ausgewï¿½hlt wird, das Inventar dann geschlossen und wieder
+				// geï¿½ffnet, wird der
+				// Selected Index verfï¿½lscht, und dieser Code repariert dieses Problem
 				if (listWaffen.getSelectedIndex() < 0
 						|| listWaffen.getSelectedIndex() >= inv.getFreigeschalteteWaffen().size())
 					listWaffen.setSelectedIndex(0);
@@ -161,10 +161,10 @@ public class InventarWindow extends JFrame {
 		lblAngriffwertName.setBounds(10, 438, 72, 14);
 		contentPane.add(lblAngriffwertName);
 
-		JLabel lblStärkeName = new JLabel("St\u00E4rke");
-		lblStärkeName.setFont(new Font("Tahoma", Font.ITALIC, 11));
-		lblStärkeName.setBounds(10, 456, 60, 14);
-		contentPane.add(lblStärkeName);
+		JLabel lblStaerkeName = new JLabel("St\u00E4rke");
+		lblStaerkeName.setFont(new Font("Tahoma", Font.ITALIC, 11));
+		lblStaerkeName.setBounds(10, 456, 60, 14);
+		contentPane.add(lblStaerkeName);
 
 		JLabel lblLebenspunkteName = new JLabel("Lebenspunkte");
 		lblLebenspunkteName.setFont(new Font("Tahoma", Font.ITALIC, 11));
@@ -181,10 +181,10 @@ public class InventarWindow extends JFrame {
 		lblAngriffwert.setBounds(194, 438, 72, 14);
 		contentPane.add(lblAngriffwert);
 
-		lblStärke = new JLabel("");
-		lblStärke.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblStärke.setBounds(194, 456, 72, 14);
-		contentPane.add(lblStärke);
+		lblStaerke = new JLabel("");
+		lblStaerke.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblStaerke.setBounds(194, 456, 72, 14);
+		contentPane.add(lblStaerke);
 
 		lblLebenspunkte = new JLabel("");
 		lblLebenspunkte.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -221,21 +221,21 @@ public class InventarWindow extends JFrame {
 		lblMagie.setBounds(520, 472, 72, 14);
 		contentPane.add(lblMagie);
 
-		cbWaffeAuswählen = new JComboBox();
-		cbWaffeAuswählen.addActionListener(new ActionListener() {
+		cbWaffeAuswaehlen = new JComboBox();
+		cbWaffeAuswaehlen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (cbWaffeAuswählen.getSelectedIndex() <= 0) {
+				if (cbWaffeAuswaehlen.getSelectedIndex() <= 0) {
 					inv.getFreigeschalteteHelden().get(listHelden.getSelectedIndex()).setWaffe(null);
 				} else {
 					inv.getFreigeschalteteHelden().get(listHelden.getSelectedIndex())
-							.setWaffe(inv.getFreigeschalteteWaffen().get(cbWaffeAuswählen.getSelectedIndex() - 1));
+							.setWaffe(inv.getFreigeschalteteWaffen().get(cbWaffeAuswaehlen.getSelectedIndex() - 1));
 				}
 			}
 		});
-		cbWaffeAuswählen.setEnabled(false);
-		cbWaffeAuswählen.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		cbWaffeAuswählen.setBounds(336, 56, 256, 41);
-		contentPane.add(cbWaffeAuswählen);
+		cbWaffeAuswaehlen.setEnabled(false);
+		cbWaffeAuswaehlen.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		cbWaffeAuswaehlen.setBounds(336, 56, 256, 41);
+		contentPane.add(cbWaffeAuswaehlen);
 		
 		JLabel lblTypName = new JLabel("Typ");
 		lblTypName.setFont(new Font("Tahoma", Font.ITALIC, 11));
@@ -284,9 +284,9 @@ public class InventarWindow extends JFrame {
 			waffenNamenSelection[i] = waffenNamen[i - 1];
 		}
 		waffenNamenSelection[0] = "Keine";
-		cbWaffeAuswählen.setModel(new DefaultComboBoxModel(waffenNamenSelection));
+		cbWaffeAuswaehlen.setModel(new DefaultComboBoxModel(waffenNamenSelection));
 
-		if (cbWaffeAuswählen.isEnabled()) {
+		if (cbWaffeAuswaehlen.isEnabled()) {
 			Held currentHeld = inv.getFreigeschalteteHelden().get(listHelden.getSelectedIndex());
 			int curHeldIndexWaff = 0;
 			for (int i = 0; i < inv.getFreigeschalteteWaffen().size(); i++) {
@@ -295,7 +295,7 @@ public class InventarWindow extends JFrame {
 					break;
 				}
 			}
-			cbWaffeAuswählen.setSelectedIndex(curHeldIndexWaff);
+			cbWaffeAuswaehlen.setSelectedIndex(curHeldIndexWaff);
 		}
 	}
 

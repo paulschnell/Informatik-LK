@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Helden;
-
 public abstract class ObjectLoader {
 
 	private File file;
@@ -20,23 +18,24 @@ public abstract class ObjectLoader {
 		String line = "";
 		while ((r = fis.read()) != -1) {
 			char c = (char) r;
-			if ((r == 13 || r == 10) && !line.equals("")) { // 10, bzw, 13 ist der keycode für die enter taste
-				
+			if ((r == 13 || r == 10) && !line.equals("")) { // 10, bzw, 13 ist der keycode fï¿½r die enter taste
+
 				read(line);
-				
+
 				i++;
 				line = "";
 			}
+
 			if (r != 13 && r != 10)
 				line += c;
 		}
 		fis.close();
 	}
-	
+
 	protected abstract void read(String line);
 
 	protected File getFile() {
 		return file;
 	}
-	
+
 }

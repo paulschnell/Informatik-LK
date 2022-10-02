@@ -4,9 +4,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Krieger;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Magier;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
 
 public class HeldenLoader extends ObjectLoader {
 
@@ -20,8 +22,12 @@ public class HeldenLoader extends ObjectLoader {
 	protected void read(String line) {
 		if (helden == null) // super wird IMMER vor dem constructor und der klasse aufgerufen
 			helden = new ArrayList<Held>();
-		
+
 		String[] split = line.split(" ");
+
+		for (int i = 0; i < split.length; i++)
+			split[i] = split[i].replace('-', ' ');
+
 		try {
 			switch (split[1]) {
 			case "magier":
@@ -35,6 +41,15 @@ public class HeldenLoader extends ObjectLoader {
 						Integer.valueOf(split[6])));
 				break;
 			}
+
+			int i = Integer.valueOf(split[7]);
+			if (i != 999)
+				if (EpicRPGDungeonAndMonstersGame.monster[i].getEntries()[0] == null)					
+					EpicRPGDungeonAndMonstersGame.monster[i].setEntry(0,
+							new ShopHeldenEntry(helden.get(helden.size() - 1), Integer.valueOf(split[8])));
+				else
+					EpicRPGDungeonAndMonstersGame.monster[i].setEntry(1,
+							new ShopHeldenEntry(helden.get(helden.size() - 1), Integer.valueOf(split[8])));
 		} catch (NumberFormatException ex) {
 			System.out.println("Es gab ein Problem beim Laden der Helden.\n"
 					+ "Stelle sicher, dass die Helden richtig eingetragen sind.");
