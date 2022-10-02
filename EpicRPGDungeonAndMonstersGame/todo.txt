@@ -1,5 +1,6 @@
 helden und waffen erstellen
 hintergrund bild für window
+!!comments!!
 skalierbar
 
 bug fixes:
