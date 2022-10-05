@@ -23,11 +23,12 @@ public class Wettlauf {
 		wettlauf.getLaeufer()[i1].setQualifiziert(true);
 
 		for (int i = 0; i < wettlauf.getLaeufer().length; i++) {
-			System.out.println("Bahn " + i + ": " + wettlauf.getLaeufer()[i].getName() + " ist "
-					+ String.format("%.4f", wettlauf.getLaeufer()[i].getZeit()) + "s gelaufen.");
+			String r = "Bahn " + i + ": " + wettlauf.getLaeufer()[i].getName() + " ist "
+					+ String.format("%.4f", wettlauf.getLaeufer()[i].getZeit()) + "s gelaufen.";
+			if (wettlauf.getLaeufer()[i].isQualifiziert())
+				r += " Qualifiziert.";
+			System.out.println(r);
 		}
-		
-		System.out.println("Bahnen " + i0 + " und " + i1 + " sind qualifizerit.");
 	}
 
 	public void anDenStart() {
