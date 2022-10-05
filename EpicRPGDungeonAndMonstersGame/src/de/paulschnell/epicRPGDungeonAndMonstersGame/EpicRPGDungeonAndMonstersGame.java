@@ -8,7 +8,7 @@ import de.paulschnell.epicRPGDungeonAndMonstersGame.windows.Window;
 
 public class EpicRPGDungeonAndMonstersGame {
 
-	// F�r den Verlauf des Projektes und falls irgendwelche Probleme mit den Bilder
+	// Fuer den Verlauf des Projektes und falls irgendwelche Probleme mit den Bilder
 	// o. A. auftreten sollten:
 	// https://github.com/erwartet/Informatik-LK/tree/main/EpicRPGDungeonAndMonstersGame
 
