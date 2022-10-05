@@ -2,12 +2,12 @@ package de.paulschnell.laeufer;
 
 public class Laeufer {
 	private String name;
-	private float zeit;
+	private double zeit;
 	private boolean qualifiziert;
 	
 	public Laeufer(String name) {
 		this.name = name;
-		this.zeit = 0.0f;
+		this.zeit = 0.0D;
 		this.qualifiziert = false;
 	}
 	
@@ -15,11 +15,11 @@ public class Laeufer {
 		return name;
 	}
 	
-	public void setZeit(float zeit) {
+	public void setZeit(double zeit) {
 		this.zeit = zeit;
 	}
 	
-	public float getZeit() {
+	public double getZeit() {
 		return zeit;
 	}
 	

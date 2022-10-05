@@ -8,18 +8,26 @@ public class Wettlauf {
 		Wettlauf wettlauf = new Wettlauf();
 
 		wettlauf.anDenStart();
-		wettlauf.zeitMessen();
 		wettlauf.rennenLaufen();
 
-		for (int i = 0; i < wettlauf.getLaeufer().length; i++) {
-			System.out.print(
-					wettlauf.getLaeufer()[i].getName() + " ist " + wettlauf.getLaeufer()[i].getZeit() + " gelaufen. ");
-			if (wettlauf.getLaeufer()[i].isQualifiziert())
-				System.out.print("Er hat sich qualifiziert!");
-			else
-				System.out.print("Er hat sich nicht qualifiziert!");
-			System.out.println("");
+		int i0 = 0;
+		int i1 = 0;
+		for (int i = 1; i < wettlauf.getLaeufer().length; i++) {
+			if (wettlauf.getLaeufer()[i0].getZeit() > wettlauf.getLaeufer()[i].getZeit()) {
+				i1 = i0;
+				i0 = i;
+			} else if (wettlauf.getLaeufer()[i1].getZeit() > wettlauf.getLaeufer()[i].getZeit())
+				i1 = i;
 		}
+		wettlauf.getLaeufer()[i0].setQualifiziert(true);
+		wettlauf.getLaeufer()[i1].setQualifiziert(true);
+
+		for (int i = 0; i < wettlauf.getLaeufer().length; i++) {
+			System.out.println("Bahn " + i + ": " + wettlauf.getLaeufer()[i].getName() + " ist "
+					+ String.format("%.4f", wettlauf.getLaeufer()[i].getZeit()) + "s gelaufen.");
+		}
+		
+		System.out.println("Bahnen " + i0 + " und " + i1 + " sind qualifizerit.");
 	}
 
 	public void anDenStart() {
@@ -33,16 +41,13 @@ public class Wettlauf {
 		laeufer[7] = new Laeufer("Elon");
 	}
 
-	public void zeitMessen() {
-		for (int i = 0; i < laeufer.length; i++) {
-			laeufer[i].setZeit((float) (Math.random() * 10.0D));
-		}
+	public void zeitMessen(Laeufer laeufer) {
+		laeufer.setZeit((double) (Math.random() * 10.0D + 10.0D));
 	}
 
 	public void rennenLaufen() {
 		for (int i = 0; i < laeufer.length; i++) {
-			if (laeufer[i].getZeit() > (float) (Math.random() * 10.0D))
-				laeufer[i].setQualifiziert(true);
+			zeitMessen(laeufer[i]);
 		}
 	}
 
