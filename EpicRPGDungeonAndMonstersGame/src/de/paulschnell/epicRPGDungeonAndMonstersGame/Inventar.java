@@ -12,7 +12,6 @@ public class Inventar {
 	private int gold = 0;
 
 	public Inventar() {
-		addHeld(EpicRPGDungeonAndMonstersGame.heldenLoader.get().get(0));
 	}
 
 	public ArrayList<Held> getFreigeschalteteHelden() {

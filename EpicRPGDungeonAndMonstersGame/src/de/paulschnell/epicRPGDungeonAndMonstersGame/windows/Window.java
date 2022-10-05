@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Drops;
-import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Erpgdamg;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Kampfregel;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Monster;
@@ -49,7 +49,7 @@ public class Window extends JFrame {
 	private JButton btnAbilityNutzen;
 
 	private int currentMonster = 0;
-	private int currentHeld = 0;
+	private int currentHeld = -1;
 
 	private Inventar inv = new Inventar();
 	private Shop shop = new Shop(inv);
@@ -87,20 +87,23 @@ public class Window extends JFrame {
 		JButton btnKaempfen = new JButton("K\u00C4MPFEN");
 		btnKaempfen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if (currentHeld < 0)
+					return;
+
 				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
 
-				held.angreifen(EpicRPGDungeonAndMonstersGame.monster[currentMonster], new Kampfregel());
+				held.angreifen(Erpgdamg.monster[currentMonster], new Kampfregel());
 
-				if (EpicRPGDungeonAndMonstersGame.monster[currentMonster].getLebenspunkte() <= 0) {
-					if (currentMonster == EpicRPGDungeonAndMonstersGame.monster.length - 1) {
+				if (Erpgdamg.monster[currentMonster].getLebenspunkte() <= 0) {
+					if (currentMonster == Erpgdamg.monster.length - 1) {
 						lblFertig.setText("Gewonnen");
-						inv.addGold(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().muenzen());
+						inv.addGold(Erpgdamg.monster[currentMonster].getDrops().muenzen());
 						btnKaempfen.setEnabled(false);
 						comboBox.setEnabled(false);
 					} else {
-						inv.addGold(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().muenzen());
-						if (EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().dropWaffe())
-							inv.addWaffe(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getDrops().getWaffe());
+						inv.addGold(Erpgdamg.monster[currentMonster].getDrops().muenzen());
+						if (Erpgdamg.monster[currentMonster].getDrops().dropWaffe())
+							inv.addWaffe(Erpgdamg.monster[currentMonster].getDrops().getWaffe());
 
 						currentMonster++;
 					}
@@ -148,16 +151,17 @@ public class Window extends JFrame {
 		comboBox = new JComboBox();
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				currentHeld = comboBox.getSelectedIndex();
+				currentHeld = comboBox.getSelectedIndex() - 1;
 
-				Held held = inv.getFreigeschalteteHelden().get(currentHeld);
+				if (currentHeld >= 0) {
+					Held held = inv.getFreigeschalteteHelden().get(currentHeld);
 
-				if (held instanceof Magier) {
-					btnAbilityNutzen.setEnabled(true);
-				} else {
-					btnAbilityNutzen.setEnabled(false);
+					if (held instanceof Magier) {
+						btnAbilityNutzen.setEnabled(true);
+					} else {
+						btnAbilityNutzen.setEnabled(false);
+					}
 				}
-
 				refresh();
 			}
 		});
@@ -257,53 +261,67 @@ public class Window extends JFrame {
 	}
 
 	public void refresh() {
-		Held held = inv.getFreigeschalteteHelden().get(currentHeld);
+		Held held = null;
+		if (currentHeld >= 0)
+			held = inv.getFreigeschalteteHelden().get(currentHeld);
 
-		pbHeld.setMaximum(held.getMaxLebenspunkte());
-		pbHeld.setValue(held.getLebenspunkte());
-		pbMonster.setMaximum(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getMaxLebenspunkte());
-		pbMonster.setValue(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getLebenspunkte());
+		if (held != null) {
+			pbHeld.setMaximum(held.getMaxLebenspunkte());
+			pbHeld.setValue(held.getLebenspunkte());
 
-		lblMonsterIndex
-				.setText(Integer.toString(currentMonster + 1) + "/" + EpicRPGDungeonAndMonstersGame.monster.length);
-		lblMonsterName.setText(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getName());
+			lblHeldBild.setIcon(Erpgdamg.pasteImage(Window.class.getResource(held.getImgSource()), lblHeldBild.getWidth(), lblHeldBild.getHeight()));
 
-		if (held.getWaffe() != null)
-			lblWaffe.setIcon(new ImageIcon(Window.class.getResource(held.getWaffe().getImgSource())));
-		else
-			lblWaffe.setIcon(null);
-		lblMonsterBild.setIcon(new ImageIcon(
-				Window.class.getResource(EpicRPGDungeonAndMonstersGame.monster[currentMonster].getImgSource())));
-		lblHeldBild.setIcon(new ImageIcon(Window.class.getResource(held.getImgSource())));
-
-		lblGold.setText(Integer.toString(inv.getGold()));
-
-		if (held instanceof Krieger) {
-			lblAbilityChargeName.setText("Ausdauer:");
-			lblAbilityCharge.setText(Integer.toString(((Krieger) held).getAusdauer()));
-			btnAbilityNutzen.setEnabled(false);
-		} else if (held instanceof Magier) {
-			lblAbilityChargeName.setText("Zauberkraft:");
-			lblAbilityCharge.setText(Integer.toString(((Magier) held).getZauberkraft()));
-			btnAbilityNutzen.setEnabled(true);
+			if (held instanceof Krieger) {
+				lblAbilityChargeName.setText("Ausdauer:");
+				lblAbilityCharge.setText(Integer.toString(((Krieger) held).getAusdauer()));
+				btnAbilityNutzen.setEnabled(false);
+			} else if (held instanceof Magier) {
+				lblAbilityChargeName.setText("Zauberkraft:");
+				lblAbilityCharge.setText(Integer.toString(((Magier) held).getZauberkraft()));
+				btnAbilityNutzen.setEnabled(true);
+			} else {
+				lblAbilityChargeName.setText("");
+				lblAbilityCharge.setText("");
+				btnAbilityNutzen.setEnabled(false);
+			}
 		} else {
 			lblAbilityChargeName.setText("");
 			lblAbilityCharge.setText("");
 			btnAbilityNutzen.setEnabled(false);
+
+			lblHeldBild.setIcon(null);
 		}
 
+		if (held != null && held.getWaffe() != null)
+			lblWaffe.setIcon(Erpgdamg.pasteImage(Window.class.getResource(held.getWaffe().getImgSource()),
+					lblWaffe.getWidth(), lblWaffe.getHeight()));
+		else
+			lblWaffe.setIcon(null);
+
+		pbMonster.setMaximum(Erpgdamg.monster[currentMonster].getMaxLebenspunkte());
+		pbMonster.setValue(Erpgdamg.monster[currentMonster].getLebenspunkte());
+
+		lblMonsterBild
+				.setIcon(Erpgdamg.pasteImage(Window.class.getResource(Erpgdamg.monster[currentMonster].getImgSource()),
+						lblMonsterBild.getWidth(), lblMonsterBild.getHeight()));
+
+		lblMonsterIndex.setText(Integer.toString(currentMonster + 1) + "/" + Erpgdamg.monster.length);
+		lblMonsterName.setText(Erpgdamg.monster[currentMonster].getName());
+
+		lblGold.setText(Integer.toString(inv.getGold()));
+
 		for (int i = 0; i < 2; i++)
-			shop.setHeldenEntry(i,
-					(ShopHeldenEntry) EpicRPGDungeonAndMonstersGame.monster[currentMonster].getEntries()[i]);
+			shop.setHeldenEntry(i, (ShopHeldenEntry) Erpgdamg.monster[currentMonster].getEntries()[i]);
 		for (int i = 0; i < 2; i++)
-			shop.setWaffenEntry(i,
-					(ShopWaffenEntry) EpicRPGDungeonAndMonstersGame.monster[currentMonster].getEntries()[i + 2]);
-	
-		String[] heldenNamen = new String[inv.getFreigeschalteteHelden().size()];
+			shop.setWaffenEntry(i, (ShopWaffenEntry) Erpgdamg.monster[currentMonster].getEntries()[i + 2]);
+
+		String[] heldenNamen = new String[inv.getFreigeschalteteHelden().size() + 1];
 		for (int i = 0; i < inv.getFreigeschalteteHelden().size(); i++) {
-			heldenNamen[i] = inv.getFreigeschalteteHelden().get(i).getName();
+			heldenNamen[i + 1] = inv.getFreigeschalteteHelden().get(i).getName();
 		}
+		heldenNamen[0] = "Keiner Ausgewählt.";
 		comboBox.setModel(new DefaultComboBoxModel(heldenNamen));
+		comboBox.setSelectedIndex(currentHeld + 1);
 	}
 
 	public void run() {

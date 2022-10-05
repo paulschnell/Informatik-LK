@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Erpgdamg;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
 
@@ -32,11 +32,11 @@ public class WaffenLoader extends ObjectLoader {
 
 			int i = Integer.valueOf(split[5]);
 			if (i != 999)
-				if (EpicRPGDungeonAndMonstersGame.monster[i].getEntries()[2] == null)
-					EpicRPGDungeonAndMonstersGame.monster[i].setEntry(2,
+				if (Erpgdamg.monster[i].getEntries()[2] == null)
+					Erpgdamg.monster[i].setEntry(2,
 							new ShopWaffenEntry(waffen.get(waffen.size() - 1), Integer.valueOf(split[6])));
 				else
-					EpicRPGDungeonAndMonstersGame.monster[i].setEntry(3,
+					Erpgdamg.monster[i].setEntry(3,
 							new ShopWaffenEntry(waffen.get(waffen.size() - 1), Integer.valueOf(split[6])));
 		} catch (NumberFormatException ex) {
 			System.out.println("Es gab ein Problem beim Laden der Waffen.\n"

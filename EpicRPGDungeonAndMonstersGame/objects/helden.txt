@@ -1,2 +1,7 @@
-Erik magier 2 1 100 erik.png 4 999
-Loud krieger 2 1 100 loud.png 5 0 0
+Erik magier 2 1 100 erik.png 2 0 0
+Paul krieger 0 2 100 paul.png 2 0 0
+Snorre krieger 2 3 100 snorre.jpg 2 1 2
+Green-Lantern magier 2 3 100 greenlantern.jpg 3 1 2
+Zane magier 4 5 100 zane.jpg 5 2 5
+Sensei-Wu magier 4 5 100 wu.jpg 5 2 6
+Sandy-Cheeks krieger 6 6 100 sandycheeks.jpg 6 3 10

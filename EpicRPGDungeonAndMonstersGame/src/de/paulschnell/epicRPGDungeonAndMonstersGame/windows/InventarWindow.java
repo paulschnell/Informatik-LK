@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Erpgdamg;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Inventar;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.Waffe;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.helden.Held;
@@ -52,8 +52,8 @@ public class InventarWindow extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				EpicRPGDungeonAndMonstersGame.frame.setEnabled(true);
-				EpicRPGDungeonAndMonstersGame.frame.refresh();
+				Erpgdamg.frame.setEnabled(true);
+				Erpgdamg.frame.refresh();
 			}
 		});
 		setResizable(false);
@@ -236,12 +236,12 @@ public class InventarWindow extends JFrame {
 		cbWaffeAuswaehlen.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		cbWaffeAuswaehlen.setBounds(336, 56, 256, 41);
 		contentPane.add(cbWaffeAuswaehlen);
-		
+
 		JLabel lblTypName = new JLabel("Typ");
 		lblTypName.setFont(new Font("Tahoma", Font.ITALIC, 11));
 		lblTypName.setBounds(10, 490, 72, 14);
 		contentPane.add(lblTypName);
-		
+
 		lblTyp = new JLabel("");
 		lblTyp.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblTyp.setBounds(194, 490, 72, 14);
@@ -290,9 +290,11 @@ public class InventarWindow extends JFrame {
 			Held currentHeld = inv.getFreigeschalteteHelden().get(listHelden.getSelectedIndex());
 			int curHeldIndexWaff = 0;
 			for (int i = 0; i < inv.getFreigeschalteteWaffen().size(); i++) {
-				if (inv.getFreigeschalteteWaffen().get(i).getName().equals(currentHeld.getWaffe().getName())) {
-					curHeldIndexWaff = i + 1;
-					break;
+				if (inv.getFreigeschalteteWaffen().get(i) != null) {
+					if (inv.getFreigeschalteteWaffen().get(i).getName().equals(currentHeld.getWaffe().getName())) {
+						curHeldIndexWaff = i + 1;
+						break;
+					}
 				}
 			}
 			cbWaffeAuswaehlen.setSelectedIndex(curHeldIndexWaff);
@@ -304,7 +306,7 @@ public class InventarWindow extends JFrame {
 			public void run() {
 				try {
 					setVisible(true);
-					EpicRPGDungeonAndMonstersGame.frame.setEnabled(false);
+					Erpgdamg.frame.setEnabled(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

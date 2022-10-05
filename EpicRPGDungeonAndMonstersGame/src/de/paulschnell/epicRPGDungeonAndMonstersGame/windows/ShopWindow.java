@@ -1,14 +1,16 @@
 package de.paulschnell.epicRPGDungeonAndMonstersGame.windows;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import de.paulschnell.epicRPGDungeonAndMonstersGame.EpicRPGDungeonAndMonstersGame;
+import de.paulschnell.epicRPGDungeonAndMonstersGame.Erpgdamg;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.Shop;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
@@ -27,6 +29,7 @@ public class ShopWindow extends JFrame {
 	private JButton[] btnEntries = new JButton[4];
 	private JLabel lblGold;
 	private JLabel lblInfo;
+	private JLabel lblBackgroundImg;
 
 	private Shop shop;
 
@@ -36,11 +39,19 @@ public class ShopWindow extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
-				EpicRPGDungeonAndMonstersGame.frame.setEnabled(true);
-				EpicRPGDungeonAndMonstersGame.frame.refresh();
+				Erpgdamg.frame.setEnabled(true);
+				Erpgdamg.frame.refresh();
 			}
 		});
-		setResizable(false);
+
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				refreshGroesse();
+			}
+		});
+
+		setResizable(true);
 		setAlwaysOnTop(true);
 		setTitle("Shop");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,7 +79,6 @@ public class ShopWindow extends JFrame {
 				refresh();
 			}
 		});
-		btnEntries[0].setBounds(10, 11, 197, 81);
 		contentPane.add(btnEntries[0]);
 
 		btnEntries[1] = new JButton("");
@@ -88,7 +98,6 @@ public class ShopWindow extends JFrame {
 				refresh();
 			}
 		});
-		btnEntries[1].setBounds(217, 11, 197, 81);
 		contentPane.add(btnEntries[1]);
 
 		btnEntries[2] = new JButton("");
@@ -108,7 +117,6 @@ public class ShopWindow extends JFrame {
 				refresh();
 			}
 		});
-		btnEntries[2].setBounds(10, 103, 197, 81);
 		contentPane.add(btnEntries[2]);
 
 		btnEntries[3] = new JButton("");
@@ -128,7 +136,6 @@ public class ShopWindow extends JFrame {
 				refresh();
 			}
 		});
-		btnEntries[3].setBounds(217, 103, 197, 81);
 		contentPane.add(btnEntries[3]);
 
 		JLabel lblGoldName = new JLabel("Gold:");
@@ -151,10 +158,11 @@ public class ShopWindow extends JFrame {
 		lblInfo.setBounds(84, 204, 261, 24);
 		contentPane.add(lblInfo);
 
-		JLabel lblBackgroundImg = new JLabel("");
-		lblBackgroundImg.setIcon(new ImageIcon(
-				ShopWindow.class.getResource("/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/shop.jpg")));
-		lblBackgroundImg.setBounds(0, 0, 444, 271);
+		lblBackgroundImg = new JLabel("");
+		lblBackgroundImg.setIcon(Erpgdamg.pasteImage(
+				ShopWindow.class.getResource("/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/shop.jpg"),
+				getWidth(), getHeight()));
+		lblBackgroundImg.setBounds(0, 0, getWidth(), getHeight());
 		contentPane.add(lblBackgroundImg);
 
 		refresh();
@@ -181,6 +189,22 @@ public class ShopWindow extends JFrame {
 					btnEntries[i + 2].setEnabled(false);
 			}
 		}
+		
+		refreshGroesse();
+	}
+	
+	public void refreshGroesse() {
+		if (lblBackgroundImg == null)
+			return;
+		lblBackgroundImg.setIcon(Erpgdamg.pasteImage(
+				ShopWindow.class.getResource("/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/shop.jpg"),
+				getWidth(), getHeight()));
+		lblBackgroundImg.setBounds(0, 0, getWidth(), getHeight());
+		
+		btnEntries[0].setBounds(10, 			 	 10, 						getWidth() / 2 - 10, getHeight() / 2 + 60 - 10);
+		btnEntries[1].setBounds(getWidth() / 2 + 10, 10, 						getWidth() - 10, 	 getHeight() / 2 + 60 - 10);
+		btnEntries[2].setBounds(10, 				 getHeight() / 2 + 60 + 10, getWidth() / 2 - 10, getHeight() + 60 - 10);
+		btnEntries[3].setBounds(getWidth() / 2 + 10, getHeight() / 2 + 60 + 10, getWidth() - 10, 	 getHeight() + 60 - 10);
 	}
 
 	public void run() {
@@ -188,7 +212,7 @@ public class ShopWindow extends JFrame {
 			public void run() {
 				try {
 					setVisible(true);
-					EpicRPGDungeonAndMonstersGame.frame.setEnabled(false);
+					Erpgdamg.frame.setEnabled(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

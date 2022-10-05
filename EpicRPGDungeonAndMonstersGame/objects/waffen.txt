@@ -1,5 +1,8 @@
 Zombie-Arm 2 Diamant 0 zombie_arm.png 999
 Goldene-Waffen 2 Gold 0 goldene_waffen.png 999
-Green-Lantern 3 Schwarzeichenholz 1 greenlantern.png 1 2
 Revolver 5 Diamant 0 revolver.png 0 0
-pancada 6 Stein 0 pancada.jpg 0 0
+Joguhrt 4 Holz 0 joguhrt.jpg 0 0
+Green-Lantern 3 Schwarzeichenholz 1 laterne.jpg 1 2
+Schwert 1 Eisen 0 schwert.jpg 1 2
+Katana 4 Eisen 0 katana.jpg 2 2
+Spinjitzu 5 Schwarzeichenholz 3 spinjitzu.jpg 2 4
