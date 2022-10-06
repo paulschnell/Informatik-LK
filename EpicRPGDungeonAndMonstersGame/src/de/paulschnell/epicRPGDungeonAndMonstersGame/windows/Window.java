@@ -29,9 +29,9 @@ import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.Shop;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
 import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
 
-public class Window extends JFrame {
+public class Window extends JFrame { // Main window
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L; // auto-generated
 	private JPanel contentPane;
 
 	private JProgressBar pbHeld;
@@ -57,13 +57,11 @@ public class Window extends JFrame {
 	private InventarWindow invWin = new InventarWindow(inv);
 	private ShopWindow shopWin = new ShopWindow(shop);
 
-	/**
-	 * Create the frame.
-	 */
 	public Window() {
 		setTitle("Epic RPG Dungen And Monsters Game No Similarities With DnD (2022 Copyrighted - for sure)");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1280, 720);
+		setResizable(false); // das Shop Fenster ist skalierbar
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -84,7 +82,7 @@ public class Window extends JFrame {
 		lblHeldTitle.setBounds(21, 10, 52, 27);
 		contentPane.add(lblHeldTitle);
 
-		JButton btnKaempfen = new JButton("K\u00C4MPFEN");
+		JButton btnKaempfen = new JButton("KAEMPFEN");
 		btnKaempfen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (currentHeld < 0)
@@ -113,6 +111,7 @@ public class Window extends JFrame {
 					comboBox.setEnabled(false);
 				}
 
+				// Abilities der Helden updaten
 				for (Held curHeld : inv.getFreigeschalteteHelden()) {
 					if (curHeld instanceof Krieger) {
 						((Krieger) curHeld).setAusdauer(((Krieger) curHeld).getAusdauer() - 3);
@@ -123,7 +122,6 @@ public class Window extends JFrame {
 				}
 
 				refresh();
-
 			}
 		});
 		btnKaempfen.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -210,13 +208,13 @@ public class Window extends JFrame {
 		JLabel lblGoldName = new JLabel("Gold:");
 		lblGoldName.setForeground(new Color(218, 165, 32));
 		lblGoldName.setFont(new Font("Tahoma", Font.ITALIC, 14));
-		lblGoldName.setBounds(408, 53, 39, 27);
+		lblGoldName.setBounds(408, 33, 39, 27);
 		contentPane.add(lblGoldName);
 
 		lblGold = new JLabel("0");
 		lblGold.setForeground(new Color(255, 255, 0));
 		lblGold.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblGold.setBounds(447, 53, 39, 27);
+		lblGold.setBounds(447, 33, 39, 27);
 		contentPane.add(lblGold);
 
 		JButton btnShop = new JButton("Shop");
@@ -257,9 +255,18 @@ public class Window extends JFrame {
 		btnAbilityNutzen.setBounds(242, 469, 121, 27);
 		contentPane.add(btnAbilityNutzen);
 
+		JLabel lblHintergrund = new JLabel("");
+		lblHintergrund.setBounds(0, 0, getWidth(), getHeight());
+		lblHintergrund.setIcon(Erpgdamg.pasteImage(
+				Window.class.getResource("/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/hintergrund.png"),
+				getWidth(), getHeight()));
+		contentPane.add(lblHintergrund);
+
 		refresh();
 	}
 
+	// Wird verwendet, um das ganze Fenster zu aktualiesieren, so was wie Bilder,
+	// Labels etc.
 	public void refresh() {
 		Held held = null;
 		if (currentHeld >= 0)
@@ -269,7 +276,8 @@ public class Window extends JFrame {
 			pbHeld.setMaximum(held.getMaxLebenspunkte());
 			pbHeld.setValue(held.getLebenspunkte());
 
-			lblHeldBild.setIcon(Erpgdamg.pasteImage(Window.class.getResource(held.getImgSource()), lblHeldBild.getWidth(), lblHeldBild.getHeight()));
+			lblHeldBild.setIcon(Erpgdamg.pasteImage(Window.class.getResource(held.getImgSource()),
+					lblHeldBild.getWidth(), lblHeldBild.getHeight()));
 
 			if (held instanceof Krieger) {
 				lblAbilityChargeName.setText("Ausdauer:");

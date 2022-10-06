@@ -12,7 +12,9 @@ import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopHeldenEntry;
 
 public class HeldenLoader extends ObjectLoader {
 
-	private ArrayList<Held> helden;
+	private ArrayList<Held> helden; // man könnte eine array list verwenden,
+									// aber einferheitshalber nutze ich eine list,
+									// weil ich die größe vorher wissen muss
 
 	public HeldenLoader(String fileSrc) throws IOException, FileNotFoundException {
 		super(fileSrc);
@@ -21,7 +23,8 @@ public class HeldenLoader extends ObjectLoader {
 	@Override
 	protected void read(String line) {
 		if (helden == null) // super wird IMMER vor dem constructor und der klasse aufgerufen
-			helden = new ArrayList<Held>();
+			helden = new ArrayList<Held>(); // deshalb muss die array list vor der klasse
+											// initialisiert werden
 
 		String[] split = line.split(" ");
 
@@ -43,7 +46,7 @@ public class HeldenLoader extends ObjectLoader {
 			}
 
 			int i = Integer.valueOf(split[7]);
-			if (i != 999)
+			if (i != 999) // Helden in die Shopetries der monster hinzufügen
 				if (Erpgdamg.monster[i].getEntries()[0] == null)					
 					Erpgdamg.monster[i].setEntry(0,
 							new ShopHeldenEntry(helden.get(helden.size() - 1), Integer.valueOf(split[8])));

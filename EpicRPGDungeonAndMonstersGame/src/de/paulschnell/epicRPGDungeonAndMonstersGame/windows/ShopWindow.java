@@ -30,6 +30,7 @@ public class ShopWindow extends JFrame {
 	private JLabel lblGold;
 	private JLabel lblInfo;
 	private JLabel lblBackgroundImg;
+	private JLabel lblGoldName;
 
 	private Shop shop;
 
@@ -138,24 +139,24 @@ public class ShopWindow extends JFrame {
 		});
 		contentPane.add(btnEntries[3]);
 
-		JLabel lblGoldName = new JLabel("Gold:");
+		lblGoldName = new JLabel("Gold:");
 		lblGoldName.setForeground(Color.ORANGE);
 		lblGoldName.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		lblGoldName.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblGoldName.setBounds(161, 236, 46, 24);
+		lblGoldName.setBounds(0, 0, 46, 24);
 		contentPane.add(lblGoldName);
 
 		lblGold = new JLabel("0");
 		lblGold.setForeground(Color.YELLOW);
 		lblGold.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGold.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblGold.setBounds(219, 236, 46, 24);
+		lblGold.setBounds(0, 0, 46, 24);
 		contentPane.add(lblGold);
 
 		lblInfo = new JLabel("");
 		lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		lblInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblInfo.setBounds(84, 204, 261, 24);
+		lblInfo.setBounds(0, 0, 261, 24);
 		contentPane.add(lblInfo);
 
 		lblBackgroundImg = new JLabel("");
@@ -201,10 +202,14 @@ public class ShopWindow extends JFrame {
 				getWidth(), getHeight()));
 		lblBackgroundImg.setBounds(0, 0, getWidth(), getHeight());
 		
-		btnEntries[0].setBounds(10, 			 	 10, 						getWidth() / 2 - 10, getHeight() / 2 + 60 - 10);
-		btnEntries[1].setBounds(getWidth() / 2 + 10, 10, 						getWidth() - 10, 	 getHeight() / 2 + 60 - 10);
-		btnEntries[2].setBounds(10, 				 getHeight() / 2 + 60 + 10, getWidth() / 2 - 10, getHeight() + 60 - 10);
-		btnEntries[3].setBounds(getWidth() / 2 + 10, getHeight() / 2 + 60 + 10, getWidth() - 10, 	 getHeight() + 60 - 10);
+		btnEntries[0].setBounds(10, 			 	 10, 						(getWidth() / 2) - 40, (getHeight() / 2) - 60 - 10);
+		btnEntries[1].setBounds(getWidth() / 2 + 10, 10, 						(getWidth() / 2) - 40, (getHeight() / 2) - 60 - 10);
+		btnEntries[2].setBounds(10, 				 getHeight() / 2 - 60 + 10, (getWidth() / 2) - 40, (getHeight() / 2) - 60 - 10);
+		btnEntries[3].setBounds(getWidth() / 2 + 10, getHeight() / 2 - 60 + 10, (getWidth() / 2) - 40, (getHeight() / 2) - 60 - 10);
+
+		lblInfo.setBounds(getWidth() / 2 - (lblInfo.getWidth() / 2), getHeight() - 80 - (lblInfo.getHeight() / 2), 261, 24);
+		lblGold.setBounds(getWidth() / 2 - (lblGold.getWidth() / 2) + lblGoldName.getWidth(), getHeight() - 60 - (lblGold.getHeight() / 2), 46, 24);
+		lblGoldName.setBounds(getWidth() / 2 - (lblGoldName.getWidth() / 2) - lblGold.getWidth(), getHeight() - 60 - (lblGoldName.getHeight() / 2), 46, 24);
 	}
 
 	public void run() {

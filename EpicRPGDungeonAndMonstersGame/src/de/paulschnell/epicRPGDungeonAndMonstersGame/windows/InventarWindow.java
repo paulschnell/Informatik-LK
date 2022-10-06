@@ -80,9 +80,9 @@ public class InventarWindow extends JFrame {
 		listHelden.setSelectedIndex(0);
 		listHelden.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Wenn ein Held ausgew�hlt wird, das Inventar dann geschlossen und wieder
-				// ge�ffnet, wird der
-				// Selected Index verf�lscht, und dieser Code repariert dieses Problem
+				// Wenn ein Held ausgewaehlt wird, das Inventar dann geschlossen und wieder
+				// geoeffnet, wird der
+				// Selected Index verfaelscht, und dieser Code repariert dieses Problem
 				if (listHelden.getSelectedIndex() < 0
 						|| listHelden.getSelectedIndex() >= inv.getFreigeschalteteHelden().size())
 					listHelden.setSelectedIndex(0);
@@ -123,9 +123,9 @@ public class InventarWindow extends JFrame {
 		listWaffen.setSelectedIndex(0);
 		listWaffen.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent e) {
-				// Wenn ein Waffe ausgew�hlt wird, das Inventar dann geschlossen und wieder
-				// ge�ffnet, wird der
-				// Selected Index verf�lscht, und dieser Code repariert dieses Problem
+				// Wenn ein Held ausgewaehlt wird, das Inventar dann geschlossen und wieder
+				// geoeffnet, wird der
+				// Selected Index verfaelscht, und dieser Code repariert dieses Problem
 				if (listWaffen.getSelectedIndex() < 0
 						|| listWaffen.getSelectedIndex() >= inv.getFreigeschalteteWaffen().size())
 					listWaffen.setSelectedIndex(0);
@@ -287,6 +287,8 @@ public class InventarWindow extends JFrame {
 		cbWaffeAuswaehlen.setModel(new DefaultComboBoxModel(waffenNamenSelection));
 
 		if (cbWaffeAuswaehlen.isEnabled()) {
+			// currentHeld kann nicht null sein, weil sich cbWaffeAuswaehlen nur aktiviert,
+			// wenn ein Held ausgewaehlt ist
 			Held currentHeld = inv.getFreigeschalteteHelden().get(listHelden.getSelectedIndex());
 			int curHeldIndexWaff = 0;
 			for (int i = 0; i < inv.getFreigeschalteteWaffen().size(); i++) {

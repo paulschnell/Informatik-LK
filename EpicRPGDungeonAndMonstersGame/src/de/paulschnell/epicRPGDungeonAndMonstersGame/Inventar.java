@@ -42,12 +42,6 @@ public class Inventar {
 		gold += n;
 	}
 
-	public void removeGold(int n) {
-		gold -= n;
-		if (gold < 0)
-			gold = 0;
-	}
-
 	public void setGold(int gold) {
 		this.gold = gold;
 	}

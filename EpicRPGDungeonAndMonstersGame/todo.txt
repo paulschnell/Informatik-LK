@@ -1,8 +1,0 @@
-helden und waffen erstellen
-hintergrund bild für window
-"keine" fuer helden in main window in combo box hinzufügen
-!!comments!!
-skalierbar
-
-bug fixes:
-	combo box in window refresh

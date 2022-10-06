@@ -16,6 +16,7 @@ public class Waffe {
 	}
 
 	public int bonusBerechnen() {
+		bonus = 0;
 		switch (material) {
 		case "Stein":
 			bonus += 2;

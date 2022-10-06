@@ -10,6 +10,8 @@ import de.paulschnell.epicRPGDungeonAndMonstersGame.shop.ShopWaffenEntry;
 
 public class WaffenLoader extends ObjectLoader {
 
+	// Für Kommentare in HeldenLoader.java gucken
+	
 	private ArrayList<Waffe> waffen;
 
 	public WaffenLoader(String fileSrc) throws IOException, FileNotFoundException {
@@ -18,7 +20,7 @@ public class WaffenLoader extends ObjectLoader {
 
 	@Override
 	protected void read(String line) {
-		if (waffen == null) // super wird IMMER vor dem constructor und der klasse aufgerufen
+		if (waffen == null)
 			waffen = new ArrayList<Waffe>();
 
 		String[] split = line.split(" ");

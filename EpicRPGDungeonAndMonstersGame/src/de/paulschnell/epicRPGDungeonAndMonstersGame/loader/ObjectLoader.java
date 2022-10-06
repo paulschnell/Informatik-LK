@@ -12,11 +12,14 @@ public abstract class ObjectLoader {
 	public ObjectLoader(String fileSrc) throws IOException, FileNotFoundException {
 		this.file = new File(fileSrc);
 
-		FileInputStream fis = new FileInputStream(file);
-		int r = 0;
+		FileInputStream fis = new FileInputStream(file); // Datei lesen
+		int r = 0; // Aktueller Charakter/Byte
 		String line = "";
-		while ((r = fis.read()) != -1) {
-			char c = (char) r;
+		while ((r = fis.read()) != -1) { // Jeden Byte der Datei einzeln lesen
+			char c = (char) r; // In Java char umwandeln
+			
+			// Wenn ein umsprung ist, soll read() ausgefuehrt und eine neue
+			// Zeile in line gespeichert werden
 			if ((r == 13 || r == 10) && !line.equals("")) { // 10, bzw, 13 ist der keycode fuer die enter taste
 
 				read(line);
@@ -31,9 +34,5 @@ public abstract class ObjectLoader {
 	}
 
 	protected abstract void read(String line);
-
-	protected File getFile() {
-		return file;
-	}
 
 }

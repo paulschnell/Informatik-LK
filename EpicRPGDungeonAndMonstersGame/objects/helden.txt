@@ -5,3 +5,6 @@ Green-Lantern magier 2 3 100 greenlantern.jpg 3 1 2
 Zane magier 4 5 100 zane.jpg 5 2 5
 Sensei-Wu magier 4 5 100 wu.jpg 5 2 6
 Sandy-Cheeks krieger 6 6 100 sandycheeks.jpg 6 3 10
+Patrick krieger 8 6 100 patrick.png 4 3 12
+Mr.-Kackapopoloch magier 10 15 100 kackapopoloch.png 10 4 30
+Morty krieger 5 20 100 morty.png 20 4 35

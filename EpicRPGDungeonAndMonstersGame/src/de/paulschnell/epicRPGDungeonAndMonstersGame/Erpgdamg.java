@@ -16,14 +16,15 @@ public class Erpgdamg {
 	// o. A. auftreten sollten:
 	// https://github.com/erwartet/Informatik-LK/tree/main/EpicRPGDungeonAndMonstersGame
 
-	// TODO: Shop items einfuegen
+	// Der revolver ist eine sehr starke waffe, womit man durch jedes monster kommt
 
+	// alles static, da ich weiß und auch nur ein Objekt jeweiliger Klassen haben möchte
 	public static Window frame;
 	public static HeldenLoader heldenLoader;
 	public static WaffenLoader waffenLoader;
 
 	public static Monster[] monster = new Monster[] {
-			new Monster(5, 100, "Guenther und seine Crew von Olaf", new Drops(1, 300, 0.0f, null),
+			new Monster(5, 100, "Guenther und seine Crew von Olaf", new Drops(1, 3, 0.0f, null),
 					"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/g\u00FCnther_und_seine_crew_von_olaf.gif"),
 			new Monster(10, 100, "Der schreckliche Sven", new Drops(2, 5, 0.0f, null),
 					"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/der_schreckliche_sven.jpg"),
@@ -35,20 +36,24 @@ public class Erpgdamg {
 					"/de/paulschnell/epicRPGDungeonAndMonstersGame/bilder/evil_morty.jpg") };
 
 	public static void main(String[] args) {
-		try {
+		try { // Helden und Monster aus dateien laden und in array packen
 			heldenLoader = new HeldenLoader("objects/helden.txt");
 			waffenLoader = new WaffenLoader("objects/waffen.txt");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
+		// Drops spezifizieren, da die Helden, bzw. Waffen noch nicht bei
+		// compile time bekannt waren
 		monster[2].getDrops().setWaffe(Erpgdamg.waffenLoader.get().get(0));
 		monster[3].getDrops().setWaffe(Erpgdamg.waffenLoader.get().get(1));
 
+		// Fenster öffnen
 		frame = new Window();
 		frame.run();
 	}
 
+	// vereinfach das Skalieren der Bilder
 	public static ImageIcon pasteImage(URL url, int width, int height) {
 		return new ImageIcon(
 				new javax.swing.ImageIcon(url).getImage().getScaledInstance(width, height, Image.SCALE_SMOOTH));
