@@ -10,7 +10,7 @@ public class Spielfeld {
 	private char feld[][];
 
 	public static void main(String[] args) {
-		Spielfeld spielfeld = new Spielfeld(5, 5);
+		Spielfeld spielfeld = new Spielfeld(2, 2);
 		
 		spielfeld.setzeMaus();
 		spielfeld.leeresSpielfeld();
